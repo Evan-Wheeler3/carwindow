@@ -1,95 +1,80 @@
 # WINDOW SEAT
-### Game Design Document — v0.1 (pre-production)
+### Game Design Document — v0.2 (pre-production)
 
 > *Every kid who ever rode in a backseat had a little guy running alongside the car.*
 > *This is the game where you finally get to control him.*
 
 Working title: **WINDOW SEAT** (alternates: *Keep Pace*, *Backseat Hero*, *Out the Window*).
 
+**What changed since v0.1:**
+- **Wonder is now the one success/fail meter.** Frame position (where the hero is in the window) is now generous, clearly shown, and only *feeds* Wonder. It can't end a run on its own.
+- **No hero is ever "lost."** The rear pillar is a soft wall, not a death line.
+- **Heads-Up warnings** come before anything fast. The default difficulty is generous.
+- **"Kid Logic" (hero actions causing real-world events) has been removed entirely.**
+- **The interior storytelling has been toned down.** It's light set-dressing and a small trophy spot, not a narrative device.
+- **The visual style is now chunky voxels.** Destruction throws out sprays of small voxel cubes.
+- **The ending is reaching the destination.** The dream, Moving Day, and the "years later" epilogue have been removed.
+
 ---
 
 ## How to read this document
 
-Part I is the important part. It's where I work out **what makes this game itself**: the handful of design decisions that turn "kid imagines a runner" into a game with its own mechanics, look, and emotional shape. Everything in Part II (the 28 requested sections) comes from those decisions. If a feature in Part II doesn't serve Part I, it should be cut.
+Part I covers the few decisions that make this game itself. Part II is the 28 requested sections. If a feature in Part II doesn't serve Part I, it gets cut.
 
 ---
 
-# PART I — FINDING THE IDENTITY
+# PART I — THE IDENTITY
 
 ## The 10-second clip
 
-This is the clip that has to make someone say *"I used to do exactly that"*:
+> A soft, slightly dim car interior: a minivan door panel, a seatbelt strap across the bottom corner, a juice box in the cupholder. Through the glass, a bright **chunky-voxel diorama world** slides by. A tiny voxel hero in a long red scarf sprints along the roadside, keeping pace with the car. He jumps a mailbox and slashes a telephone pole, which **bursts into a spray of little cubes** as the top half topples onto a fence and flattens it. He runs up the falling pole, onto the power line, and grinds it in a shower of sparks. In the glass you can faintly see the kid's reflection, grinning. The tinny song on the radio swells into a full version of itself as the world floods with color.
 
-> A soft, slightly dim car interior. A minivan door panel, a seatbelt strap across the bottom corner, a juice box in the cupholder. Through the glass is a bright, sharply lit **toy-diorama world** going by. A tiny hero in a long red scarf sprints along the roadside, matching the car's speed. He jumps a mailbox and slashes a telephone pole. The top half topples **in chunky blocky pieces**, lands across a fence and flattens it, and he runs up the falling pole, onto the power line, and grinds it with sparks. Faintly reflected in the glass, the kid's face is grinning. The tinny song on the car radio swells into a full orchestral version of itself.
+Nobody needs that clip explained. The rest of this document is about keeping the game fun once the recognition has worn off.
 
-Nobody needs that clip explained. The rest of this document is about making sure the game stays fun **after** the recognition wears off.
+## The four core ideas
 
-## The five design discoveries
+### 1. The window is the screen. Keep pace with the car.
 
-These are the core ideas. Each one turns part of the nostalgic premise into a mechanic, so the nostalgia does real work instead of sitting on top as decoration.
+The hero only exists in the window. The car's speed sets the tempo of the whole game, and the hero runs alongside it. **Where the hero is in the window is always shown and always forgiving:**
 
-### Discovery 1 — The window is the screen, and *where the hero is in the glass* is your health.
+- **Clean play pushes him forward.** Out in front of the car he gets a **score bonus**, shown by a gold glint on the scarf and a "LEADING!" sticker on the glass.
+- **Bonks push him backward**, toward the rear of the window. The rear pillar glows warm, and the hero visibly strains to catch up.
+- **He can never be lost.** The rear pillar is a soft wall. If he's pinned against it, he automatically sprints back toward the middle. The only cost is a slow trickle of Wonder while he's in the "Falling Behind" zone.
 
-In real life the imaginary runner only exists while you can see him through the window. If he falls behind, he slides back past the rear pillar and he's gone. **That's the fail state.** There's no health bar. The hero's horizontal position in the window frame *is* how well you're doing:
+Frame position is **feedback and score, never game over.** It's easy to read and hard to fail.
 
-- Clean play, chains, and hitching rides on faster vehicles push him **forward** in the frame.
-- Bonks and stumbles knock him **backward** toward the rear pillar.
-- If he passes behind the rear pillar (the C-pillar) he's **lost**.
+### 2. Wonder: the better you play, the more imaginary the world becomes.
 
-This produces a risk/reward dial **straight out of the geometry**. Obstacles come in from the front edge of the window. A hero near the front edge is "leading the car" and scores a multiplier, **but has less time to react**. A hero near the rear edge has lots of time to see what's coming, **but is one bonk away from being lost**. Nobody had to design that tension; it comes from the framing.
-
-### Discovery 2 — Parallax is the difficulty curve.
-
-Out a real side window, near things whip past and far things crawl. The game uses this directly:
-
-- The **gameplay plane** (the "Run Line") sits at **mid-distance**, so obstacles move past slowly enough to read and react to.
-- The **foreground layer** (guardrail posts, near-lane cars, reflector poles) blurs past fast. It carries the *sensation* of speed without carrying the *difficulty*.
-- The **background** (fields, skyline, mountains, landmarks) creeps along. It carries the feeling of a long drive and lets you **see landmarks coming a minute ahead**, exactly like spotting the water tower from the highway.
-
-This lets the car go "highway fast" without the game becoming unreadable, and the solution is physically correct rather than a cheat.
-
-### Discovery 3 — The better you play, the more imaginary the world becomes.
-
-The arc REAL WORLD → IMAGINED HERO → IMPOSSIBLE HEROICS → FULL CHILDHOOD FANTASY isn't only a campaign arc. **It happens inside every trip, and it's driven by performance.** A meter called **Wonder** fills as you chain moves, and it steps the world up through four tiers:
+This is **the one meter that decides success.** Chaining moves fills it, and as it fills the world steps up through four tiers:
 
 | Tier | Name | What the world looks like |
 |---|---|---|
-| 0 | **Just Looking** | Muted, overcast, ordinary. The hero is a pale doodle-figure. The radio is tinny. |
-| 1 | **Pretend** | Color warms up. The hero gets a cardboard sword. Kid mouth-sound effects. |
-| 2 | **Adventure** | Saturated, dramatic sky, drums come in. *Imagined platforms* appear and open high routes. |
-| 3 | **Legend** | Full fantasy. Trucks become armored beasts and clouds become whales. Orchestral music. The sword glows. |
+| 0 | **Just Looking** | Muted, overcast, ordinary. The hero is a pale, plain voxel figure. The radio is tinny. |
+| 1 | **Pretend** | Color warms up. The hero gets a cardboard sword. The kid's mouth-sound effects kick in. |
+| 2 | **Adventure** | Saturated, dramatic sky, drums. *Imagined voxel platforms* appear and open high routes. |
+| 3 | **Legend** | Full fantasy. Trucks grow armor plates, clouds become whales. Full music. The sword glows. |
 
-**Failure runs the other way.** Losing the hero drops you one tier, and reality seeps back in. Losing him at Tier 0 means **the kid gets bored**: they sigh, slump back, and look away from the window. *That* is game over, and it's the most on-theme fail state the game could have.
+Bonks and falling behind drain Wonder, and the world visibly slides back toward ordinary. **If Wonder empties completely at Tier 0, the kid gets bored**: they sigh, slump, and look away from the window. *That* is the only fail state. It's generous by design: there's a clear warning first (the glass starts to fog and the kid's reflection yawns), Wonder trickles back up on its own at Tier 0, and checkpoints are frequent.
 
-Escalating imagination becomes a reward you can see and hear, not a cutscene.
+Escalating imagination becomes a reward you can see and hear, and *losing* it is the threat.
 
-### Discovery 4 — Kid Logic: the imaginary hero seems to affect the real world.
+### 3. Everything outside breaks into chunky voxels.
 
-Every kid believed they made the traffic light turn green. The game takes that seriously:
+The outside world is built from **chunky voxels**: toy-like, colorful, a miniature diorama. When something breaks, it splits into a few **big voxel chunks** plus a **spray of small cubes** that bounce, tumble, and scatter along the road. Destruction is the game's main pleasure and its visual signature.
 
-- At a red light, clear the **Stoplight Challenge** and the light turns green. (It would have anyway. Don't tell the kid.)
-- Do the arm-pump gesture at a semi and **the trucker honks**.
-- Slash the "DETOUR" sign and Dad mutters "huh, guess we'll take the scenic route." That opens a **secret branch** of the trip.
-- Stay airborne through the whole tunnel and the kid **holds their breath** the entire way.
+### 4. Real inside, imagined outside.
 
-These moments drive the secrets, the bonus content, and the hardest "I did that too" recognition hits.
-
-### Discovery 5 — The car interior is the trophy shelf and the storyteller.
-
-The window frame is on screen 100% of the time, so it's the most-seen asset in the game. Use it for two things:
-
-- **Progression lives in the frame.** Collectibles show up *inside the car*: stickers on the glass, a keychain on the backpack, a toy in the cupholder, a crayon drawing taped to the seat back. Your progress is visible in every screenshot.
-- **Story lives in the frame.** There's no dialogue and no cutscenes. What's in the car tells you what this drive is about: grocery bags, beach towels, a new baby seat, and eventually moving boxes stacked against the window. (Think *Unpacking*: storytelling through objects.)
+The car interior is soft, smooth, and believable. The world outside is chunky, saturated, and exaggerated. That contrast, seen *through glass* with a faint reflection of the kid's face, is what makes it read as "a kid imagining this" and not "a runner game with a frame."
 
 ## What this game is / is not
 
 | It IS | It is NOT |
 |---|---|
-| A **handcrafted** run-and-destroy platformer made of short "trips" (3–5 min) | An endless runner (one optional mode, not the core) |
+| A **handcrafted** run-and-destroy platformer of short "trips" (3–5 min) | An endless runner (one optional mode, not the core) |
 | Played **entirely through one window** | A driving game |
 | A single gameplay plane, side-on | A 3-lane "swipe left/right" runner |
-| Toy-like, chunky, physical destruction | A physics sandbox |
-| Wordless, warm, quietly emotional | A story game with dialogue |
+| Generous by default, deep for score-chasers | A punishing precision game |
+| Toy-like voxel destruction | A physics sandbox |
 | Immediately readable: **3 buttons** | An RPG with stats and skill trees |
 
 ---
@@ -98,905 +83,810 @@ The window frame is on screen 100% of the time, so it's the most-seen asset in t
 
 ## 1. Core Game Pillars
 
-1. **The Window Is The World.** Everything is seen through the backseat window. The car interior is always on screen. No exceptions, including menus. Every feature has to work inside this frame.
-2. **Keep Pace.** The hero runs *alongside the car*. The car's speed is the game's tempo, and staying in the window is staying alive.
-3. **Everything Is An Obstacle Course.** Ordinary roadside objects become platforms, rails, trampolines, and things to smash. Interaction comes before decoration.
-4. **Toys Break Beautifully.** Destruction is chunky, readable, and physically funny, and it follows *toy physics*, not realism.
-5. **Imagination Is Earned.** The world gets more fantastical *because you're playing well*. Reality is the fail state.
+1. **The Window Is The World.** Everything is seen through the backseat window. The car interior is always on screen.
+2. **Keep Pace.** The hero runs *alongside the car*. The car's speed is the game's tempo.
+3. **Everything Is An Obstacle Course.** Ordinary roadside objects become platforms, rails, trampolines, and things to smash.
+4. **Toys Break Beautifully.** Chunky voxel destruction with satisfying cube sprays. Toy physics, not realism.
+5. **Imagination Is Earned.** The world gets more fantastical *because you're playing well*. Boredom is the fail state.
 
-Tiebreaker rule: if a feature conflicts with Pillar 1, cut the feature.
+Tiebreaker: if a feature conflicts with Pillar 1, cut the feature.
 
 ## 2. One-Sentence Pitch
 
-**Window Seat is a physics-destruction platformer played entirely through the backseat window of the family car: you control the imaginary hero every kid pictured running alongside, and the better you play, the more the world outside turns into their imagination.**
+**Window Seat is a voxel destruction platformer played entirely through the backseat window of the family car: you control the imaginary hero every kid pictured running alongside, and the better you play, the more the world outside turns into their imagination.**
 
 ## 3. Expanded Pitch
 
-You're eight years old, and the drive to the store is taking forever.
+You're eight years old, and the drive is taking forever.
 
-You press your forehead to the window, and out there a little hero in a red scarf starts running beside the car. He vaults mailboxes, cuts telephone poles in half, runs up the falling pole onto the power lines, grinds them in a shower of sparks, drops onto the roof of a passing semi, and rides it past the car.
+You press your forehead to the window, and out there a little hero in a red scarf starts running beside the car. He vaults mailboxes, slashes telephone poles into showers of cubes, runs up the falling pole onto the power lines, grinds them in sparks, drops onto the roof of a passing semi, and rides it ahead of the car.
 
-*Window Seat* is a game of short, handcrafted car trips over one formative year of a kid's life: errands, school pickups, the highway to Grandma's, a rainy night drive, a summer vacation, and finally moving day. Each trip is a 3–5 minute run-and-destroy platforming course along a road that's half real and half imagined, framed the whole time by the backseat window.
+*Window Seat* is a game of short, handcrafted car trips: errands, school pickups, country roads, rainy drives, the interstate, the drive to Grandma's, and finally the big summer trip. Each trip is a 3–5 minute run-and-destroy platforming course along a road that's half real and half imagined, framed the whole time by the backseat window. Each one ends the way every car ride ends: **you arrive.**
 
-The controls are three buttons: **Jump**, **Slash**, **Down**. The depth is in **chaining**: slash into a hop, a hop onto a wire, a wire into a pole-snap, a snap into a launch, a launch onto a truck. Every object reacts physically, falls on other objects, and becomes a platform for the next move. Play well and the world transforms around you: color floods in, the radio song swells into an orchestral theme, trucks become dragons, and secret imagined routes open in the sky. Play badly and reality creeps back in. The hero slips behind the window pillar, and the kid, bored, looks away.
+The controls are three buttons: **Jump**, **Slash**, **Down**. The depth is in **chaining**: slash into a hop, a hop onto a wire, a wire into a pole-snap, a snap into a launch, a launch onto a truck. Every voxel object reacts physically, falls on other objects, and becomes a platform for the next move. Play well and the world transforms: color floods in, the radio song swells into a full soundtrack, trucks grow dragon armor, and secret imagined routes open in the sky. Play badly and reality creeps back in until, eventually, the kid gets bored and looks away.
 
-There's no dialogue. The story is told by what's inside the car, and it ends somewhere every player has been, from the other side of it.
-
-**Platforms:** PC/Steam (lead), Steam Deck, Nintendo Switch-class hardware. Mobile possible later; the controls are designed to allow it.
-**Price point:** $15–20 premium. No F2P, no energy systems.
-**Audience:** 25–45-year-olds who were that kid, plus families and kids (E/PEGI 7). Streamer-friendly, clip-friendly.
-**Comparables:** *Sayonara Wild Hearts* (music-driven flow + emotion), *Alto's Odyssey* (mood, one-button grace), *Rayman Origins* runner levels (feel), *Neon White* (route mastery), *Katamari Damacy* (escalating absurdity), *Unpacking* (wordless storytelling through objects).
+**Platforms:** PC/Steam (lead), Steam Deck, Switch-class hardware. Mobile possible later; the controls are designed to allow it.
+**Price:** $15–20 premium. No F2P.
+**Audience:** 25–45-year-olds who were that kid, plus families and kids (E/PEGI 7). Streamer- and clip-friendly.
+**Comparables:** *Sayonara Wild Hearts* (music-driven flow), *Alto's Odyssey* (mood, accessible grace), *Rayman Origins* runner levels (feel), *Katamari Damacy* (escalating absurdity), *Crossy Road* / *Teardown* (voxel charm and voxel destruction, at opposite ends of the scale).
 
 ## 4. Target Player Experience
 
-**First 30 seconds:** recognition. *"Oh. Oh no. I did this."*
-**First 5 minutes:** delight. Things break, the hero is unreasonably cool, the world lights up.
-**First hour:** mastery begins. *"Wait, if I slash the pole while I'm on the wire, it launches me?"* Players start planning routes.
-**Hours 2–6 (campaign):** variety and escalation. New road types, new verbs, set pieces (racing the train, the car wash, the storm), and a quiet story through the interior.
-**After the credits:** mastery and collection. Gold stickers, perfect chains, secret detours, plate collection, Long Drive endless mode, daily routes, backseat co-op.
+**First 30 seconds:** recognition. *"Oh. I did this."*
+**First 5 minutes:** delight. Things burst into cubes, the hero is unreasonably cool, the world lights up.
+**First hour:** mastery begins. *"Wait, if I slash the pole while I'm on the wire, it launches me?"*
+**Campaign (≈ 3–5 hours):** variety and escalation. New road types, new moves, a set piece in each trip (racing the train, the car wash, the storm).
+**After the credits:** score-chasing, 3-star ranks, perfect chains, collectibles, Long Drive endless mode, backseat co-op.
+
+**Difficulty philosophy:** *anyone can reach the destination; experts chase the score.* The default is generous: frequent checkpoints, no instant failure, warnings before fast objects. Depth comes from chains, routes, and ranks, not from punishment.
 
 **Emotional curve of every trip:**
 
 ```
- boredom → curiosity → freedom → peak imagination → arrival (gentle return to reality)
-   grey      hero appears   flowing chains   Tier 3 / set piece     engine off, silence
+ boredom → curiosity → freedom → peak imagination → ARRIVAL
+   grey      hero appears   flowing chains   Tier 3 / set piece   car parks, music settles, engine off
 ```
-
-Arrival is the signature beat: the car pulls in, the music folds back into the tinny radio, the engine ticks as it cools, the hero gives a little wave and fades. **You don't want the trip to end.** The game deliberately flips "are we there yet?"
 
 ## 5. Visual Style Specification
 
-### Decision: not voxels. **"Block-Built Toy Diorama."**
+### Decision: **chunky voxels, staged as a modern toy diorama.**
 
-I took voxels seriously and rejected them as the primary style:
+Everything outside the window is voxel. The interior is not. The risk with voxels is looking like Minecraft or a generic asset-store game, so here is how this style avoids that:
 
-- **Pure voxel grids read as Minecraft or Crossy Road** within a second. The screenshot identity is gone.
-- **Uniform grids flatten silhouettes.** A telephone pole made of 1-unit cubes looks like every other voxel pole.
-- **Voxel destruction (Teardown-style) is expensive**, and breaking into identical cubes looks generic.
+1. **No world grid.** Voxels are used for *objects* (poles, trees, cars, signs, houses), not for terrain you dig into. Models are placed freely along the road, rotated, and scaled as whole objects. The world reads as a diorama of voxel toys, not a block world.
+2. **No pixel textures.** Every voxel is one flat color from a curated palette. There's no grass-block texturing.
+3. **Modern lighting.** Soft ambient occlusion in the crevices between voxels, a subtle **bevel/edge-highlight shader** on each cube face so blocks read as physical toy cubes, a warm key light, bloom on glowing things, and **tilt-shift blur** for the miniature look.
+4. **Silhouette-first modeling.** Each model is shaped to read at a glance from the side. That's the only angle that matters.
+5. **Strict palette discipline.** One 256-color palette per trip and Wonder tier. Red is reserved for the hero.
 
-Alternatives considered:
+### Voxel density (the "chunky" rule)
 
-| Style | Verdict |
-|---|---|
-| Pure voxel | Rejected. Derivative look, costly destruction. |
-| Hand-drawn 2D | Charming and kid-like, but loses physical 3D destruction and the parallax-through-glass effect. |
-| Papercraft / cardboard | Very "kid-made," but tearing is less satisfying than breaking. **Kept as a cosmetic world skin and as the Tier-1 hero's sword.** |
-| Claymation | Beautiful, but production cost is out of scope. |
-| **Block-built toy diorama** | **Chosen.** |
-
-**What "block-built" means:** every object outside the window is *assembled from a small number of chunky, beveled pieces* (4–20 per object), like a wooden toy set or chunky building blocks. The pieces are irregular (wedges, octagonal cylinders, rounded blobs, beveled slabs), not a uniform grid.
-
-Why it wins:
-
-1. **Destruction is built in.** Breaking an object means *releasing the pieces it's already made of*, plus a few pre-split variants. It's cheap, readable, and art-directable.
-2. **Strong silhouettes.** Pieces are shaped for each object, so a pole reads as a pole.
-3. **Toy materiality.** Bevels catch light, and soft AO between pieces says "physical object you could pick up."
-4. **One palette texture runs the whole world.** That makes Wonder tier transitions nearly free (see §19).
+- **1 voxel = 1/12 of hero height (H).** With H ≈ 1.6 m in-engine, a voxel is ≈ 13 cm.
+- **The hero is ≈ 12 voxels tall** (plus scarf). That's chunky, readable, and toy-like. The face uses 2–4 voxels: eyes and a brow.
+- **Everything shares the same voxel scale.** Mixed resolutions break the toy illusion. The only exception is distant scenery, which can use 2× voxels.
+- **Typical sizes:** mailbox 10 voxels tall, telephone pole 72, trees 48–84, car 14 tall × 36 long, semi 40 × 160.
 
 ### The core contrast: inside vs outside
 
 | | **Inside the car (REAL)** | **Outside the window (IMAGINED)** |
 |---|---|---|
-| Geometry | Smooth, curved, believable proportions | Chunky, beveled, exaggerated |
-| Materials | Fabric, scuffed plastic, vinyl, rubber seals, real-ish textures | Flat-ish painted toy surfaces, vertex color + palette |
-| Lighting | Soft, warm, low-contrast, slightly dim | Bright, crisp, high-contrast key light |
-| Focus | Slightly soft (camera is focused *out*) | Sharp at the Run Line, **tilt-shift blur** top/bottom |
-| Scale | 1:1 human | Miniature-diorama scale cue |
-
-**Tilt-shift is the signature filter.** A vertical gradient blur above and below the Run Line makes the outside world look like a tabletop model, *a toy world the kid is playing with*. It's cheap (no real DOF needed) and it makes the game recognizable from one screenshot.
-
-### Density and scale rules
-
-- **Hero height = 1 H** (≈ 1.6 m in-engine). Everything is measured in H.
-- **Smallest debris chunk ≥ 1/6 H.** Nothing breaks into dust-sized pieces, so everything stays chunky.
-- **Max 20 pieces per breakable** (most have 4–10).
-- **Props are slightly over-scaled toward the hero**: mailboxes at 0.8 H, poles at 6 H, trees at 4–7 H. The hero should look heroic, not tiny.
+| Geometry | Smooth, curved, believable | Chunky voxels |
+| Materials | Fabric, scuffed plastic, vinyl, rubber seals | Flat palette colors with edge-bevel shading |
+| Lighting | Soft, warm, slightly dim | Bright, crisp, high-contrast |
+| Focus | Slightly soft (the kid is focused *out*) | Sharp at the gameplay plane, **tilt-shift blur** top and bottom |
+| Scale | 1:1 human | Miniature diorama |
 
 ### Character design
 
-**The Hero ("the Runner").** About 2.5 heads tall, big hands and feet, a hood or cap, and an **enormous red scarf** that trails behind. The scarf is a speed indicator and the silhouette signature, the way Mario's cap or Journey's cloak works. He holds a stick or cardboard-tube sword that grows more real with Wonder. His face is two dots and a determined brow. He's readable at 10% screen height, and **red is reserved for the hero** in every palette.
+**The Hero ("the Runner").** A chunky voxel figure about 12 voxels tall, with big hands and feet, a hood, and an **enormous red scarf** that trails behind as a chain of voxel segments with physics. The scarf is the speed indicator and the silhouette signature. He carries a stick or cardboard sword that gets more real with Wonder:
 
-He evolves with Wonder:
-- Tier 0: pale paper-white with a crayon outline. A doodle.
+- Tier 0: pale and plain.
 - Tier 1: colored in, cardboard sword.
-- Tier 2: full color, wooden sword, scarf grows longer.
-- Tier 3: sword glows, light trail, scarf like a banner.
+- Tier 2: full color, wooden sword, longer scarf.
+- Tier 3: glowing sword, trail, scarf like a banner.
 
-**The Kid.** About 8 years old, in a hoodie, deliberately ambiguous so players project onto them. Mostly seen in the opening, as a faint reflection in the glass, and as hands entering the frame (pressing the glass, drawing in condensation, waving). Animation is grounded and observational: swinging feet, picking at the seatbelt, slumping.
+**The Kid.** About 8 years old, in a hoodie, ambiguous so players can project. Mostly seen in the opening, as a faint reflection in the glass, and as hands entering the frame. Built in the smooth interior style, not voxels: the kid is *real*.
 
-### Animation style
+### Animation
 
-- **The hero animates "on twos"** (12–15 fps stepped poses with smear frames), while the world and car are smooth at 60 fps. The hero looks *drawn by imagination* and pops against the world (the *Spider-Verse* technique). Test this early; fall back to smooth with heavy squash/stretch if it hurts game feel.
-- **World objects follow toy physics:** slightly floaty arcs, exaggerated bounces, fast wobble-settle on impact.
+- **The hero animates snappily**, with strong key poses and squash/stretch done by scaling the voxel model. Consider animating "on twos" (stepped poses) to make him feel imagined. Prototype that and keep it only if it doesn't hurt feel. Gameplay timing stays continuous either way.
+- **World objects follow toy physics:** slightly floaty arcs, exaggerated bounces, a quick wobble-settle on impact.
 - **The kid and interior** are smooth and naturalistic.
 
 ### Lighting, color, time of day
 
-- **One key directional light** (the sun) outside, plus a sky/ambient gradient. No realtime GI. AO is baked into vertex colors per kit piece.
-- **Color progression has two axes:**
-  - *Per trip (story/time of day):* morning errand in pale yellows, highway noon in bright blues and greens, Grandma's at golden hour in amber and rose, night drive in navy with sodium-orange, the dream in impossible pastels.
-  - *Per Wonder tier (performance):* a desaturated, flat palette at Tier 0, rising to saturated, rim-lit, and bloom-touched at Tier 3.
-- **Turns** rotate the sun relative to the car, so **light patches and shadows sweep across the interior**. That's a powerful "we're really driving" cue.
-- **Shadows:** one stable shadow cascade around the Run Line. Debris uses blob shadows. **The hero always gets a crisp blob shadow** for landing readability.
-- **Fog:** distance and height fog in the palette's sky color, so the background breaks into soft, layered color planes.
+- One key directional light (the sun) outside, plus a sky/ambient gradient. No realtime GI. Voxel AO is baked per model.
+- **Two color axes:**
+  - *Per trip:* morning errand in pale yellows, highway noon in bright blues and greens, Grandma's at golden hour in amber, night drive in navy with sodium-orange.
+  - *Per Wonder tier:* desaturated and flat at Tier 0, saturated, rim-lit, and blooming at Tier 3.
+- **Turns** rotate the sun relative to the car, so light patches sweep across the interior.
+- **Shadows:** one stable shadow cascade around the gameplay plane. Debris cubes use cheap blob or no shadows. **The hero always has a crisp blob shadow** for landing readability.
+- **Fog:** distance fog in the sky color, so the background breaks into soft layered planes.
 
 ### Distant scenery
 
-- 3–4 **parallax silhouette layers** (low-poly cards) beyond about 150 m, plus a subtly **curved horizon** shader that bends the far world downward, like a small planet or rolling diorama.
-- **Landmarks** (water tower, stadium, mountain, city skyline, Grandma's church steeple) are big far billboards that drift slowly. They're visible for 30–90 s before you reach them, which builds anticipation the way real drives do.
+- 3–4 **parallax layers** of low-detail voxel silhouettes (2× voxel size), plus a subtly **curved horizon** shader that makes the world feel like a rolling diorama.
+- **Landmarks** (water tower, stadium, mountains, city skyline) sit far off and drift slowly, visible well before you reach them.
 
 ### Weather
 
-- **Rain:** drops on the *glass* (shader), whose streak angle follows car speed, plus puddle splashes outside and wet sheen on the palette. Wipers are audible but not visible (side window).
-- **Snow:** soft flakes, white-dusted kit pieces, condensation on the glass that the kid draws in.
-- **Night:** reflections in the glass get stronger, headlight sweeps, streetlight pools on the Run Line, and the hero's scarf glows faintly.
-- **Fog bank:** a set piece where visibility drops and you rely on audio telegraphs.
+- **Rain:** drops on the *glass* streaking with car speed, splashes of tiny blue cubes outside, a wet sheen on the palette.
+- **Snow:** drifting white cubes, snow-capped voxel models, condensation on the glass.
+- **Night:** stronger reflections in the glass, headlight sweeps, streetlight pools, a faint glow on the hero's scarf.
 
 ### The glass layer
 
-The window is a real surface with **reflections**, **smudges**, a **tint band** along the top, **raindrops**, and **condensation**. The kid's face reflection is faint and **gets stronger in tunnels and at night**. That's the moment you see their expression react to what you just did. The glass is part of the game's identity, not a filter.
+The window is a real surface: faint **reflection** of the kid (stronger in tunnels and at night), **smudges**, a **tint band** at the top, **raindrops**, and **condensation**. Glass effects are always masked away from the gameplay band so they never hurt readability.
 
-### Destruction FX language
+### Destruction look (see §8 for systems)
 
-- Wood splinters into chunky planks plus a few small splinter particles.
-- Metal (signs, poles' hardware) clanks, bends one joint, then pops off. Bright sparks.
-- Foliage bursts into 3–5 canopy blobs plus a big leaf burst (GPU particles).
-- Glass shatters into flat triangular shards with glints.
-- Stone and concrete break into heavy chunks with a dust puff (chunky cube-ish dust particles).
-- Hay or paper puffs into a cloud of confetti-like pieces.
-- Water (hydrant) shoots up a geyser column, which doubles as a bounce pad.
+- **Big chunks:** the object splits into 2–6 large voxel clusters that tumble and bounce.
+- **Cube spray:** dozens to hundreds of **single small cubes** (1 voxel, some half-size) burst from the break in the object's own colors. They bounce on the road, tumble, roll to a stop, then **shrink-pop** away.
+- **Material flavor:** wood sprays brown cubes plus plank clusters, foliage bursts into green cubes that float a bit like leaves, metal throws grey cubes plus bright spark cubes, glass throws translucent cubes with glints, a hydrant shoots a geyser of blue cubes.
 
 ## 6. Camera Specification
 
-### Decision: **2.5D side-scroller rendered in full 3D, camera locked to the car, framed by a real 3D interior.**
+### Decision: **2.5D side-on gameplay in a full 3D voxel world, with the camera locked to the car and framed by a real 3D interior.**
 
 | Option | Verdict |
 |---|---|
-| True 3D third-person | Breaks Pillar 1. The car disappears and you get "another runner." |
-| Fixed-lane 3D (Subway Surfers) | Wrong axis. The kid looks *sideways*, not forward. |
-| Pure 2D side-scroller | Loses parallax depth, interior framing, and 3D destruction. |
-| **2.5D: one gameplay plane, full 3D world** | **Chosen.** It matches the real geometry of looking out a side window, keeps platforming readable, and lets 3D debris fly toward and away from the camera. |
+| True 3D third-person | Breaks Pillar 1. The car disappears. |
+| Fixed-lane 3D (Subway Surfers) | Wrong axis. The kid looks *sideways*. |
+| Pure 2D side-scroller | Loses depth, interior framing, and 3D cube sprays. |
+| **2.5D: one gameplay plane, full 3D world** | **Chosen.** It matches looking out a side window, keeps platforming readable, and lets voxel debris fly toward and away from the camera. |
 
 ### Layering (from the camera outward)
 
 ```
  [KID HEAD CAMERA]
-     │  0.3–0.6 m   INTERIOR: door panel, seal, seatbelt, cupholder, pillars  (real 3D, soft focus)
-     │  0.6 m       GLASS: reflection, smudges, rain, condensation               (shader layer)
-     │  2–8 m       FOREGROUND: guardrail, reflector posts, near-lane cars      (fast blur, no gameplay)
-     │  ~25 m       RUN LINE: hero + all interactables                        (sharp, gameplay plane)
-     │  40–150 m    MIDGROUND: fields, houses, trees                           (slow parallax, scatter)
-     ▼  150 m+      BACKGROUND: silhouette layers, landmarks, sky                 (very slow / static)
+     │  INTERIOR: door panel, seal, seatbelt, cupholder, pillars   (real 3D, soft focus)
+     │  GLASS: reflection, smudges, rain, condensation              (shader layer)
+     │  FOREGROUND: guardrail, reflector posts                       (whips past fast, decoration only)
+     │  RUN LINE: hero + everything you interact with              (sharp, the gameplay plane)
+     │  MIDGROUND: fields, houses, trees                             (slow parallax)
+     ▼  BACKGROUND: silhouettes, landmarks, sky                      (very slow)
 ```
 
-### Framing math (starting values, tune in prototype)
+**In plain terms:** near things whip past fast and far things move slowly, like out any real car window. The hero runs a bit away from the car, where things move past at a comfortable, playable speed. The fast-moving guardrails up close give the *feeling* of speed without making the game harder.
 
-- At the Run Line, the window shows **about 16 H wide**. The hero should be **about 10–12% of screen height**.
-- The hero's **home position** is u = 0.4 (u is normalized across the window, 0 = rear pillar, 1 = front pillar).
-- **Lead time** (time from an obstacle entering at the front edge to reaching the hero) = (1 − u) × 16 H ÷ scroll speed. At town speed (8 H/s) and u = 0.4, that's **1.2 s**. Target: ≥ 0.9 s at the hardest speeds.
-- **Highway look-ahead:** at high speeds the camera yaws 8–15° forward, *as if the kid is leaning to look ahead*. That buys about 3 H of lead and reads naturally as body language.
+### Framing
+
+- At the gameplay plane, the window shows **about 16 hero-heights wide**. The hero is **about 10–12% of screen height**.
+- **Every obstacle is visible for at least 1.2 seconds before you reach it** at default difficulty. Segments are validated against this automatically.
+- **At highway speed the camera turns slightly forward**, as if the kid is leaning to look ahead, so you see more of what's coming.
+
+### Heads-Up warnings (anything fast)
+
+Anything that moves faster than the scenery (a vehicle overtaking from behind, a fast oncoming truck, a falling tree from off-screen, a set-piece hazard) gets a **1.5-second Heads-Up**:
+
+- A **chunky glowing arrow icon** on the window edge it will come from, which pulses faster as it gets closer.
+- A **distinct audio cue** (an engine rising, a horn tap, a creak).
+- Its headlights or shadow appear on the pillar before it does.
+
+Fast vehicles are usually *opportunities* (jump on and ride), not just threats.
 
 ### The Kid Head Rig (gameplay camera)
 
-The camera is the kid's head, a physical thing in a physical car:
+The camera is the kid's head inside a real car:
 
-- **Position** is constrained to a box about 25 cm wide inside the car. **Rotation** is limited to yaw ±20°, pitch ±12°.
-- It **follows the hero softly**. When the hero is very high, the kid leans down and looks up, and the window frame shifts in parallax to show more sky. When the hero is near the front, the kid leans forward.
-- **Car motion feeds the camera:** constant low-amplitude road vibration, bump impulses (expansion joints, potholes), braking pitch, acceleration push-back, and slight roll on turns. *All of it is scalable and can be turned off in Accessibility.*
-- **The interior is real geometry rendered with the scene**, not a 2D overlay. Even a tiny head movement creates parallax between the window frame and the outside world, and that sells the illusion of a real window more than anything else.
+- It moves within a small box (≈ 25 cm) and rotates a little (yaw ±20°, pitch ±12°).
+- It **follows the hero softly**. When the hero jumps high, the kid leans to look up, and the window frame shifts in parallax to show more sky.
+- **Car motion:** gentle road vibration, bumps, braking lean, slight roll on turns. *All of it can be scaled down or switched off (Steady Cam).*
+- **The interior is real geometry**, so even tiny head movements create parallax between the frame and the world. That sells the window illusion.
 
-### Keeping the illusion that the hero is outside a moving vehicle
+### Keeping the illusion that the hero is outside a moving car
 
-1. The hero's world-space velocity really is the car's velocity plus a small relative offset. The world physically moves past and the car physically moves forward (see §19). Debris **stays behind** in world space and drifts out the rear of the window, which is correct and very convincing.
-2. **The glass is always present.** The hero is always seen *through* a reflection layer, even a faint one.
-3. **The car occludes.** The C-pillar and B-pillar block the view. The hero can disappear behind a pillar, and that's *meaningful* (lost).
-4. **Car events affect the view:** bumps jolt it, lane changes zoom the Run Line in or out ±10%, tunnels darken the interior, overpasses flick shadows across the kid's lap.
-5. **Shared lighting:** the outside sun spills into the interior (light patches), and streetlights sweep across the door panel at night.
+1. The car and hero really move forward through a static world, so debris **stays behind** and drifts out the back of the window. That's physically correct and very convincing.
+2. The glass is always present, so the hero is always seen *through* a faint reflection.
+3. The pillars occlude. The hero can briefly pass behind one.
+4. Car events affect the view: bumps jolt it, tunnels darken the interior, overpasses flick shadows across the kid's lap.
+5. Outside light spills into the interior.
 
-### Offscreen handling
+### Off-screen and accessibility
 
-If the hero jumps above the window's top edge, show a **little shadow arrow on the headliner trim**, and the head rig tilts up. Top-edge occlusion is capped at about 0.6 s per jump through level design.
-
-### Accessibility camera options
-
-- **Window Zoom:** shrinks the interior frame so the window takes up more of the screen.
-- **Steady Cam:** removes vibration, bumps, and roll.
-- **Ultrawide:** shows more interior on the sides, never more gameplay width (for fairness).
+- If the hero jumps above the window top, a **shadow arrow on the headliner** shows where he is, and the camera tilts up.
+- **Window Zoom** (a thinner interior frame), **Steady Cam** (no shake/bumps), and **Ultrawide** (shows more interior, never more gameplay width).
 
 ## 7. Core Movement System
 
-### Ruthless verb selection
+### Verb selection
 
 | Candidate | Verdict | Reason |
 |---|---|---|
-| Run | **Auto.** | Matched to the car. The pace is the car's. |
-| Jump + one air jump | **Keep.** | Core. The air jump is the "refreshable resource." |
-| Slash | **Keep.** | Core. It's both the attack *and* the air-mobility tool. |
+| Run | **Auto.** | Matched to the car. |
+| Jump + one air jump | **Keep.** | The air jump is the refreshable resource. |
+| Slash | **Keep.** | Attack *and* air-mobility tool. |
 | Stomp (Down in air) | **Keep.** | Breaks things below, triggers bounces. |
-| Slide (Down on ground) | **Keep.** | Sliding under semi-trailers and signs is a perfect kid fantasy. |
-| Grind wires/rails | **Keep (automatic).** | The single most iconic image of the premise. |
-| Ride vehicles | **Keep (automatic).** | Makes the car/traffic theme mechanical. |
-| Bounce | **Keep (automatic).** | Cars, cows, awnings, hydrant geysers. |
-| Dash | **Merged into Slash.** | An air slash *lunges* forward. One button, two meanings. |
-| Vault | **Cut.** | Jump covers it. An auto-vault animation can play when jump timing is close. |
-| Wall jump / wall run | **Cut.** | The roadside has almost no walls. It would need bespoke geometry. |
-| Climb | **Cut.** | Slow, and it breaks flow. Running up falling poles replaces it. |
-| Horizontal speed control | **Cut.** | Frame position is *earned*, not steered (see Discovery 1). |
+| Slide (Down on ground) | **Keep.** | Sliding under semi-trailers is a perfect kid fantasy. |
+| Grind wires/rails | **Keep (automatic).** | The most iconic image of the premise. |
+| Ride vehicles | **Keep (automatic).** | Makes traffic mechanical. |
+| Bounce | **Keep (automatic).** | Cars, cows, awnings, geysers. |
+| Dash | **Merged into Slash.** | An air slash lunges forward. |
+| Vault | **Cut.** | Jump covers it. |
+| Wall jump / climb | **Cut.** | No walls on the roadside, and climbing breaks flow. |
+| Horizontal speed control | **Cut.** | Frame position is earned, not steered. |
 
-### Controls (3 inputs + 1 combo)
+### Controls
 
 | Input | Controller | Keyboard | Touch (future) |
 |---|---|---|---|
 | **Jump** (hold = higher) | A | Space | Tap right half |
 | **Slash** | X | J / Left-click | Tap left half |
 | **Down** (Slide / Stomp) | B or ↓ | S / ↓ | Swipe down |
-| **GIANT** (when available) | Jump + Slash together | Space + J | Two-finger tap |
+| **GIANT** (when available) | Jump + Slash | Space + J | Two-finger tap |
 
-### Movement spec (starting values)
+### Movement spec (starting values; H = hero height; fixed 60 Hz)
 
-**Units:** H = hero height. Times in seconds. Simulation at a fixed 60 Hz.
-
-- **Jump:** full-hold apex 3.0 H in 0.38 s, minimum tap 1.2 H. Gravity on the way down × 1.6. **Coyote time 0.10 s, jump buffer 0.12 s.**
-- **Air jump:** 1 charge, 2.0 H. **It refreshes on any successful interaction** (slash hit, stomp, bounce, grind, ride). *This is the engine of chaining.*
-- **Slash (ground):** 0.22 s total, active frames 3–7, reach 1.5 H in a forward arc. It's an upper-body layer, so running never stops.
+- **Jump:** full-hold apex 3.0 H in 0.38 s, minimum tap 1.2 H, fall gravity × 1.6. **Coyote time 0.12 s, jump buffer 0.15 s** (generous).
+- **Air jump:** 1 charge, 2.0 H. **It refreshes on any successful interaction.** *This is the engine of chaining.*
+- **Slash (ground):** 0.22 s, reach 1.5 H, generous hitbox. Upper-body only, so running never stops.
 - **Slash (air):**
-  - **On hit:** "Slash-Hop." A hop of +1.4 H, the air jump is restored, and a small forward lunge (+0.03 u frame position).
-  - **On whiff:** a 0.15 s float (reduced gravity), **once per airtime**. It feels generous but can't be abused.
-- **Stomp:** fall speed × 3. On impact, breakables break, bouncers launch (3.5 H), and plain ground gives a small dust ring with 0.1 s landing lag (a mild penalty for using it on nothing).
-- **Slide:** 0.5 s at 0.45 H tall. It **smashes low fragile objects** (fence rails, cones) automatically. **Jump out of a slide** = a long, low jump (2.2 H high, faster forward lunge).
-- **Grind:** auto-attaches when you descend onto a grindable spline within a 0.35 H vertical window. While grinding, frame position climbs (+0.06 u/s), sparks fly, and the chain refreshes every 0.5 s. Jumping off is a full jump with the air jump restored.
-- **Ride:** landing on a vehicle roof makes it your moving platform, and you inherit its relative velocity. A truck faster than your car carries you *forward* in the frame. A slow tractor drifts you back. Jump off any time.
-- **Bounce:** landing on or stomping a bouncer (car roof with Down, awning, cow, geyser) launches you 3.5–4.5 H. Bouncers squash and stretch like toys.
-- **Hitstop:** 3–5 frames global freeze on breaks, scaled by object mass. **It's non-negotiable for feel.**
+  - **On hit:** "Slash-Hop." +1.4 H hop, air jump restored, small forward push in the frame.
+  - **On whiff:** a brief float (0.15 s, once per airtime).
+- **Stomp:** fast fall. It breaks what's below, bounces off bouncers (3.5 H), and a stomp on plain ground makes a dust ring.
+- **Slide:** 0.5 s, low profile, smashes low fragile things automatically. **Jump out of a slide** = a long, low jump.
+- **Grind:** auto-attaches when landing on a wire or rail (a generous 0.4 H window). It pushes you forward in the frame, throws sparks, and keeps the chain alive. Jumping off is a full jump with the air jump restored.
+- **Ride:** landing on a vehicle roof carries you with it. Faster vehicles move you forward in the frame.
+- **Bounce:** landing or stomping on bouncers launches you 3.5–4.5 H.
+- **Hitstop:** 3–5 frames on breaks. Essential for feel.
 
-### Frame position (the "health" system)
+### Frame position (obvious and generous)
 
-- u ∈ [0, 1] across the window. **Home = 0.40. Front cap = 0.78.** At the cap, the kid leans forward, but the hero can't leave the front edge.
-- **Bonk** (hitting a solid hazard, a vehicle's side, or running into a breakable *without* slashing it): −0.15 u, the chain breaks, and a stumble animation plays.
-- **Pit / water / ditch:** the hero tumbles and pops back up at ground level (kid logic: he's fine). −0.20 u.
-- **Recovery:** grinds, faster rides, slash-lunges, and long chains push u forward. On flat ground with no events, u drifts slowly toward home (0.03 u/s).
-- **"Out Front" bonus:** above u = 0.60, score × 1.5. *Remember, this also means less reaction time.*
-- **Lost:** at u < 0.02 the hero slips behind the C-pillar.
-  1. Brief slow-mo. The kid's head turns to look back through the rear glass.
-  2. Wonder drops one tier and the world visibly de-saturates.
-  3. The hero comes sprinting back in from the left ("I'll catch up!") at u = 0.30 after about 2 s.
-  4. **If lost at Tier 0, the kid gets bored:** they sigh, slump, and look away, and the camera pulls back to the side-view framing. *Trip Over.* Restart from the last landmark checkpoint.
+The window is split into three clearly shown zones:
 
-### Readability rules for the player
+| Zone | Where | What it shows | Effect |
+|---|---|---|---|
+| **LEADING** | Front 35% of the window | Gold glint on the scarf, "LEADING!" sticker on the glass | **Score × 1.5** |
+| **Pacing** | Middle | Normal | Nothing. The default and safe zone. |
+| **Falling Behind** | Rear 20% | Rear pillar glows warm, hero visibly strains | **Wonder drains slowly** (≈ 4%/s) |
 
-1. **Wood and thin things break.** (Slash them or run through them painfully.)
+- **Bonk** (hitting a solid hazard, a vehicle's side, or running into a breakable without slashing): a stumble and a modest push back. The chain breaks and Wonder takes a small hit.
+- **Pits, ditches, and water:** the hero tumbles and pops right back up (he's fine), with a push back and a small Wonder hit.
+- **Recovery is fast and automatic:** on any normal ground the hero drifts back to the middle within about 3 seconds. Grinds, rides, and chains push him forward faster.
+- **The rear pillar is a soft wall.** The hero can never be lost behind it. If he's pinned there, he sprints back out automatically.
+
+### Readability rules
+
+1. **Wood and thin things break.**
 2. **Wheels and round, soft things bounce.**
-3. **Lines (wires, rails, ropes, gutters) are grindable.**
-4. **Grey concrete and stone hurt.** (Only Giant mode or falling objects break them.)
-5. **Red is the hero. Gold is a collectible. Glowing outlines are imagined platforms.**
+3. **Lines (wires, rails, gutters) are grindable.**
+4. **Grey concrete and stone hurt.** (Only Giant or falling objects break them.)
+5. **Red = hero. Gold = collectible. Glowing outline = imagined platform. Pulsing arrow = something fast is coming.**
 
-Teach each rule in the first three trips through layout alone. No tutorial text beyond button glyphs on the glass.
+These are taught by layout in the first three trips, with only button glyphs drawn on the glass.
 
 ## 8. Combat / Destruction System
 
 ### Philosophy: toy destruction, choreographed but *physical-feeling*
 
-Destruction is **mostly authored and partly simulated**. It's tuned for satisfaction, not accuracy.
+Destruction is mostly authored and partly simulated. Two visual layers make it work: **big voxel chunks** for weight and **small cube sprays** for spectacle.
 
 ### Destruction classes
 
 | Class | Examples | Behavior | Gameplay role |
 |---|---|---|---|
-| **A. Pop** | Cones, mailboxes, small signs, trash cans, crates, glass bus-stop panels | Instantly releases 3–8 pieces with an impulse along the slash vector. | Chain fodder, timing practice. |
-| **B. Topple** | Telephone poles, trees, streetlights, billboards, road-sign gantries | The cut snaps to the nearest of 2–3 authored **cut sockets**. The top section becomes a **scripted hinged fall** (kinematic, gravity-eased), then breaks into pieces on impact. | **Falling objects are temporary platforms and ramps**, and they **hit other things** (domino). |
-| **C. Run / Structure** | Fence runs, guardrail ribbons, scaffolding, power lines, hay bale stacks | Breaks propagate along a run (fence segments go in a quick ripple). Wires become verlet ropes and whip. | Combo multipliers, launches. |
-| **D. Set piece** | Water tower, gas station canopy, crane, billboard collapse, car wash brushes | Authored animation sequences plus physics debris bursts. | Climaxes, bosses. |
-| **Toy reactors** (non-breakable) | Cars, trucks, buses, cows, shopping carts | Procedural squash, wobble, and bounce. Dents on hard hits. **Never destroyed.** | Platforms, bouncers, rides. |
+| **A. Pop** | Cones, mailboxes, small signs, trash cans, crates, bus-stop glass | Splits into 2–4 chunks plus a 40–80 cube spray along the slash direction. | Chain fodder. |
+| **B. Topple** | Telephone poles, trees, streetlights, billboards, sign gantries | The cut happens at the nearest authored **cut socket**, and a cube spray fires along the cut line so it looks *sliced through the voxels*. The top tips over in a **scripted fall**, then shatters on impact into chunks plus a 100–200 cube spray. | **Falling objects are temporary platforms and ramps**, and they **knock other things over** (domino). |
+| **C. Run / Structure** | Fence runs, guardrails, scaffolding, power lines, hay stacks | Breaks ripple along the run. Wires snap and whip. | Combo multipliers, launches. |
+| **D. Set piece** | Water tower, gas station canopy, crane, car wash brushes | Authored sequences plus huge cube bursts (500+). | Climaxes. |
+| **Toy reactors** (never break) | Cars, trucks, buses, cows, shopping carts | Squash, wobble, and bounce like toys. | Platforms, bouncers, rides. |
 
-**Vehicles are never destroyed.** There are people inside. In the kid's mind cars are *toys* that squash and spring back, and that's both funnier and tonally correct. (At Tier 3 the giant semi becomes an imagined armored beast. You slash its *armor plates*, which are imaginary, not the truck.)
+**Vehicles are never destroyed.** There are people inside. In the kid's mind cars are springy toys. At Tier 3 the big semi grows imaginary voxel *armor plates*, and those are what you slash off (in cube sprays).
 
-### The "Domino" system
+### Domino
 
-Falling Class-B objects run a cheap **swept-capsule check** during their fall. Anything breakable they cross gets broken with an impulse in the fall direction. That gives you:
+A falling Topple object checks what it sweeps through as it falls. Anything breakable in its path breaks. So a pole falls onto the next pole for a **chain reaction**, a tree flattens a fence into a **ripple**, a billboard falls flat into a **ramp**, and a pole lands on a car, which **bounces it**. Each object broken by another object scores a **Domino**. Setting these up deliberately is part of mastery.
 
-- A pole falls onto the next pole. **Chain reaction.**
-- A tree falls onto a fence. **Ripple.**
-- A billboard falls flat. **Ramp.**
-- A pole falls onto a car. **The car squashes and bounces it, and the bounce launches the pole's top chunk.**
+### The satisfaction recipe (every break)
 
-Every object broken by another object scores as a **Domino** (its own verb in the chain, see §12). Players will start deliberately setting up chain reactions. *This is the "ridiculous environmental interaction" pillar.*
+1. A slash smear on the hero.
+2. **Hitstop**, 3–5 frames.
+3. A 1-frame white flash on the struck voxels.
+4. Layered SFX: crack + material + (at low Wonder) the kid's whispered mouth-sound.
+5. **Directional chunk burst** along the slash direction.
+6. **Cube spray**: small cubes in the object's colors, bouncing and tumbling on the road.
+7. Secondary motion: stumps wobble, wires sway.
+8. Camera micro-shake plus rumble.
+9. A world-space score pop in chunky voxel numbers.
+10. Chunks and cubes rest 2–4 s, then **shrink-pop** away.
 
-### The satisfaction recipe (every break gets all of these)
+### Imagined enemies (sparse)
 
-1. **Anticipation:** a slash smear frame on the hero.
-2. **Hitstop:** 3–5 frames.
-3. **Impact flash:** the struck piece flashes white for 1 frame.
-4. **Layered SFX:** crack transient + material body + (Tier 0–1) the kid's whispered mouth-sound.
-5. **Directional chunk burst** along the slash vector, with randomized spin.
-6. **Secondary motion:** the remaining stump wobbles, wires sway, nearby objects jiggle.
-7. **Particles:** dust puff, material particles (splinters, leaves, sparks).
-8. **Camera micro-shake** (≤ 2 px equivalent) plus controller rumble.
-9. **Score pop** in world space, chunky numbers.
-10. **Linger and pop-out:** chunks rest for 2–4 s, then **shrink-pop to zero** (a toy-like disappearance, no fading).
+They only appear at Wonder Tier 2+, so *the real world never has enemies*.
 
-### Imagined enemies
+- **Grumbles:** grey static-cube blobs ("bits of boredom") that pop into grey cubes.
+- **Puddle Snappers:** imaginary crocodiles in puddles.
+- **Wind Socks:** kite flyers you slash-hop off.
 
-Enemies are **sparse and clearly imaginary**. They only appear at Wonder Tier 2+, so *the real world never has enemies*. Kid's imagination monsters:
-
-- **Grumbles:** grey static-blob critters (*bits of boredom*) that try to slow the hero. One slash pops them.
-- **Puddle Snappers:** imaginary crocodiles in rain puddles.
-- **Wind Socks:** kite-like flyers you slash-hop off (aerial chain fodder).
-
-Six enemy types max in the full game. They exist to add aerial chain targets and imaginative flavor, **not** to make this a combat game.
+Six types max in the full game. They're aerial chain targets and flavor, **not** a combat system.
 
 ## 9. Environmental Interaction System
 
 ### Component model
 
-Every interactable is a combination of a few components. Designers compose behavior and never write per-object code.
+Designers combine components. There's no per-object code.
 
 | Component | Effect |
 |---|---|
-| `Breakable(class, pieces, hp=1)` | Breaks on slash/stomp/domino/giant. |
-| `Toppler(cut_sockets, fall_dir)` | Scripted hinged fall, becomes a temporary platform, sweeps domino. |
-| `Solid` | Platform you can stand on. |
+| `Breakable(class, chunks, cube_count)` | Breaks on slash/stomp/domino/giant. |
+| `Toppler(cut_sockets, fall_dir)` | Scripted fall, temporary platform, domino sweep. |
+| `Solid` | Platform. |
 | `Hazard` | Bonks on side contact. |
 | `Bouncer(power)` | Launch on landing/stomp. |
-| `Grindable(spline)` | Rail behavior. |
-| `Rideable(velocity_profile)` | Moving platform with relative velocity. |
-| `Launcher(vector)` | One-shot launch (snapping wire whip, geyser, seesaw plank). |
-| `Collectible(type)` | Treasure / plate / sticker. |
-| `KidLogicTrigger(event)` | Fires a real-world event (light change, honk, detour). |
+| `Grindable(spline)` | Rail. |
+| `Rideable(velocity_profile)` | Moving platform. |
+| `Launcher(vector)` | One-shot launch (snapping wire, geyser). |
+| `HeadsUp(lead_time)` | Edge arrow + audio warning for fast things. |
+| `Collectible(type)` | Treasure / sticker. |
 | `Imagined(min_tier)` | Only exists at or above a Wonder tier. |
 
-### Signature interactions (by trip introduction)
+### Signature interactions
 
-- **Mailbox:** pops; the lid flaps off.
-- **Picket fence:** slide-smash ripple.
-- **Trash can:** the lid flies off like a frisbee and can be **slash-hopped** off mid-air.
-- **Fire hydrant:** slashing it makes a **geyser**, a bounce pad for 4 s.
-- **Telephone pole + wires:** cut the pole while you're on the wire and the wire **snaps and whips you upward** (a Launcher).
-- **Billboard:** cut the legs and it falls flat into a **ramp**.
-- **Shopping carts** (parking lot): stomp one and it rolls and **becomes a rideable**.
-- **Cows:** bounce (cow is fine, "moo"). **Counting cows** collectible bonus.
-- **Hay bales:** stomp and they roll, flattening fences.
-- **Semi-trailers:** slide under, or ride the roof. The trucker-honk Kid Logic trigger.
-- **Overhead highway sign gantries:** grindable *and* topple-able.
-- **Train:** a moving platform set piece. Jump between cars.
-- **Construction scaffolding:** a Class-C collapse sequence.
-- **Car wash brushes:** spinning hazards and bouncers (boss).
-
-### Kid Logic triggers (the secret layer)
-
-| Trigger | Real-world effect | Reward |
-|---|---|---|
-| Clear the Stoplight Challenge | The light turns green | Bonus + "I did that" sticker |
-| Arm-pump gesture (Slash while riding a semi) | Trucker honks | Wonder burst |
-| Stay airborne through a whole tunnel | The kid holds their breath (cheeks puff in reflection) | Big bonus |
-| Slash the DETOUR sign | Dad takes the "scenic route" | **Secret branch segment** |
-| Spot and stomp the **Yellow Car** | Sibling: "YELLOW CAR!" | Collectible |
-| Lift feet over railroad tracks (be airborne at the crossing) | Small sparkle | Superstition collectible |
+- **Mailbox:** pops; the lid flies.
+- **Picket fence:** a slide-smash ripple.
+- **Trash can:** the lid flies like a frisbee and you can slash-hop off it mid-air.
+- **Fire hydrant:** slashing it makes a geyser of blue cubes that works as a bounce pad.
+- **Telephone pole + wires:** cutting the pole while you're on the wire snaps it and whips you upward.
+- **Billboard:** cut the legs and it falls flat into a ramp.
+- **Shopping carts:** stomp one and it rolls, and you can ride it.
+- **Cows:** bounce ("moo"). The cow is fine.
+- **Hay bales:** stomp them and they roll, flattening fences.
+- **Semi-trailers:** slide under or ride on top.
+- **Highway sign gantries:** grindable and topple-able.
+- **Train:** a moving platform set piece.
+- **Scaffolding:** a collapse sequence.
+- **Car wash brushes:** spinning hazards and bouncers.
 
 ## 10. Road-Trip / Stage Structure
 
 ### Trips, not levels
 
-Each stage is **a Trip**: a handcrafted 3–5 minute drive with a real-life reason, a destination, a time of day, an interior state, and one **new mechanic**.
+Each stage is a **Trip**: a handcrafted 3–5 minute drive with a destination, a time of day, and one **new mechanic or interaction**. **Every trip ends by arriving.**
 
 ### Anatomy of a trip
 
 ```
 DEPARTURE  →  MAIN ROAD  →  LANDMARK SET PIECE  →  BREATHER  →  FINAL STRETCH  →  ARRIVAL
- slow, teach    core mechanic   (checkpoint)         stoplight /     peak speed &      car parks,
- Wonder 0→1     density rises                        parking lot     density, Tier 3   music folds
-                                                     challenge                         back to radio
+ slow, teach    core mechanic   (checkpoint)         stoplight /     peak speed,       car parks,
+ Wonder 0→1     density rises                        parking lot     Tier 3            music settles
 ```
 
-- **Checkpoints = landmarks** ("the big water tower," "the bridge").
-- **Car speed is authored** per trip on a timeline: stops, slow zones, merges, highway stretches. The world's tempo is the car's tempo.
+- **Checkpoints** at every landmark (roughly every 45–60 s).
+- **Car speed is authored** per trip: stops, slow zones, merges, highway stretches.
+- **Stoplights are breathers.** The world pauses, the hero idles, and you catch your breath.
 
-### Campaign: "One Year of Rides" (full game, 12 trips + epilogue)
+### Campaign (12 trips, short errands building to the big trip)
 
-| # | Season | Trip | New mechanic / feature | Set piece / boss |
-|---|---|---|---|---|
-| 1 | Spring | **The Errand** (neighborhood) | Run, Jump, Slash | First hero appearance |
-| 2 | Spring | **Grocery Run** | Stoplight Challenge, Stomp, shopping carts | **The Car Wash** (brush monsters) |
-| 3 | Spring | **School Pickup** | **Wires & grinding**, poles | Power line canyon |
-| 4 | Summer | **Country Road** | Slide, cows, hay bales, ditches | **Race the Train** |
-| 5 | Summer | **The Interstate** | **Riding vehicles**, speed, gantries | **The Semi-Dragon** |
-| 6 | Summer | **Beach Vacation** | Wind gusts, sand, boardwalk rails | The Long Bridge (floor is lava) |
-| 7 | Fall | **Rainy Drive** | Glass rain, puddles, lightning-felled trees | The Storm |
-| 8 | Fall | **Construction Zone** | Scaffolding collapses, cranes, heavy domino | **The Crane** |
-| 9 | Fall | **Grandma's House** (long drive, golden hour) | Mixed mastery, mountain switchbacks, tunnels | The Mountain Tunnel (hold breath) |
-| 10 | Winter | **Snow Day / Holiday Drive** | Ice slide physics, snowmen, condensation drawing | The Snowplow |
-| 11 | Winter | **Moving Day** (car full of boxes, city to city) | Everything, at highway scale | The Moving Truck convoy |
-| 12 | Winter | **The Night Drive → The Dream** | The kid falls asleep. **Tier 4**: the car flies. | **The Grey** (boredom/sleep incarnate) |
-| E | — | **Years Later** | Epilogue (see §15) | Credits run |
+| # | Trip | New mechanic / feature | Set piece |
+|---|---|---|---|
+| 1 | **The Errand** (neighborhood) | Run, Jump, Slash | The hero's first appearance |
+| 2 | **Grocery Run** | Stomp, shopping carts, parking lot | **The Car Wash** (brush monsters) |
+| 3 | **School Pickup** | **Wires & grinding** | Power line canyon |
+| 4 | **Country Road** | Slide, cows, hay bales | **Race the Train** |
+| 5 | **Rainy Drive** | Rain on glass, puddles, falling trees | **The Storm** |
+| 6 | **Construction Zone** | Scaffolding, heavy domino | **The Crane** |
+| 7 | **City Traffic** | Buses, billboards, stop-and-go | The Overpass Run |
+| 8 | **The Interstate** | **Riding vehicles**, speed, gantries | **The Semi-Dragon** |
+| 9 | **Mountain Pass** | Tunnels, switchbacks, rockfalls | The Rockslide |
+| 10 | **Night Drive** | Streetlights, glowing hero, fog | The Fog Bank |
+| 11 | **Grandma's House** (golden hour) | Mastery mix | The Long Hill |
+| 12 | **The Big Trip** (summer vacation) | Everything, the longest drive | The Long Bridge → **arriving at the beach** |
 
-**The Wonder cap rises with the campaign:** Trips 1–2 cap at Tier 1, 3–5 at Tier 2, 6+ reach Tier 3, and the Dream unlocks Tier 4. This keeps the macro arc (real → full fantasy) intact even though Wonder is also driven by performance.
+**The Wonder cap rises through the campaign:** Trips 1–2 cap at Tier 1, 3–5 at Tier 2, and 6+ reach Tier 3. Early trips stay grounded and later trips get more fantastical.
 
 ### Bonus content
 
-- **Bonus rounds** (short, 30–60 s, inside trips):
-  - *Stoplight Challenge*: the world is frozen, so smash everything in the arena before green.
-  - *Floor Is Lava*: bridges and tunnels where touching the ground ends the bonus.
+- **Bonus sections inside trips:**
   - *Passing Lane*: a truck convoy where the only floor is roofs.
-  - *Drive-Thru / Gas Station*: a stationary arena while the parent is busy.
+  - *Floor Is Lava*: bridges where the ground is water, so you stay on rails and vehicles.
+  - *Parking Lot*: a stationary smash arena while the parent runs inside.
 - **Secret routes:**
-  - **Vertical routes:** a high route (wires, rooftops, imagined platforms) and a low route (ground, slides), Sonic-style, all in one plane.
-  - **Wonder-gated routes:** imagined platforms appear only at Tier 2+.
-  - **Kid Logic detours:** branching segments with treasures.
-- **Secret trips:** *Wrong Turn* (unlocked by finding every detour) and *The Drive-In* (night, movie-monster themed).
-
-### Cut / rejected
-
-- **Free stage select from a world map with branching roads.** The campaign is a year and linear is fine. A *paper road map* trip-select comes after the campaign is finished.
-- **Daytime/weather as random modifiers on every trip.** Each trip's weather is authored. Randomness belongs to Long Drive only.
+  - **Vertical routes:** a high route (wires, rooftops) and a low route (ground, slides), all in one plane.
+  - **Wonder-gated routes:** imagined platforms appear at Tier 2+ and lead to treasures.
 
 ## 11. Progression
 
-**There's no XP, no skill tree, and no stat upgrades.** Progression has four layers, all of them visible:
+**No XP, no skill trees, no stats.** There are four simple layers:
 
-1. **New verbs, introduced by the campaign:** one per trip in the first five trips, then new *interactions*. The kid "thinks up" new moves. In the opening of the trip, the kid's hand draws the new move in the window condensation, a diegetic tutorial card.
-2. **Wonder cap:** the world can get more fantastical as the campaign goes on.
-3. **Collections** (displayed in the car):
-   - **Treasures:** 3 hidden per trip, childhood objects (a bouncy ball, a slap bracelet, a toy dinosaur, a trading card, a glow star). They appear in the car interior.
-   - **The License Plate Game:** 50 plates on passing vehicles, each ridden or stomped to "collect." There's a plate booklet in the menu.
-   - **Stickers:** trip ranks (bronze/silver/gold stars) applied to the window frame.
-4. **Cosmetics** (unlocked through stickers, treasures, plates):
-   - **Hero drawings:** skins framed as kid drawings (knight, ninja, astronaut, dinosaur-costume, cardboard robot).
-   - **Swords:** stick, cardboard tube, foam sword, umbrella, glow-sword, baguette.
+1. **New moves**, introduced by the campaign (one per trip in the first five trips, new interactions after that).
+2. **Wonder cap**, which rises through the campaign.
+3. **Collections:**
+   - **Treasures:** 3 hidden per trip, mostly on Wonder-gated or high routes (bouncy ball, toy dinosaur, glow star…).
+   - **Stickers:** trip ranks (1–3 stars).
+4. **Cosmetics**, unlocked with stars and treasures:
+   - **Hero outfits** (knight, ninja, astronaut, dinosaur costume, cardboard robot).
+   - **Swords** (stick, cardboard tube, foam sword, umbrella, glow sword).
    - **Scarf trails.**
-   - **Mouth-sound packs** (sound effects performed by the kid).
-   - **Radio stations:** unlock music tracks and arrangements.
-   - **Window stickers / interior decorations.**
-   - **World skin:** "Cardboard World."
+   - **Mouth-sound packs.**
+   - **Radio stations** (music arrangements).
+   - **Voxel palettes** for the world.
 
-**Imaginary power:** one, **GIANT**. When the Wonder gauge is full at Tier 3, Jump + Slash makes the hero **grow to 4× size for 8 seconds**. Everything breaks on contact, including concrete, the kid presses their face to the glass, and the music hits its peak. It's the spectacle reward, the trailer shot, and a tactical resource (save it for the set piece).
+**In the car, kept light:** earned stickers go on the window frame, and *your most recent treasure* sits in the cupholder. That's all. Each trip's interior has a couple of props that fit the errand (grocery bags, an umbrella, a beach bag). They're set-dressing, not story.
+
+**Imaginary power: GIANT.** When Wonder is full at Tier 3, press Jump + Slash and the hero **grows to 4× size for 8 seconds**. Everything breaks on contact, including concrete, in enormous cube sprays, and the music peaks. It's the spectacle reward, the trailer shot, and something to save for set pieces.
 
 ## 12. Scoring / Mastery
 
-### Chain (moment-to-moment)
+### Chain
 
-- Every **interaction** adds +1 to the chain and refreshes a **1.5 s chain timer**. Plain running doesn't refresh it.
-- **Variety rule:** *the same move twice in a row doesn't grow the chain* (it still scores 50%). This is the one rule that creates flow without a Tony Hawk-level rulebook.
+- Every **interaction** adds +1 to the chain and refreshes a **2.0 s** chain timer. Plain running doesn't refresh it.
+- **Variety rule:** *the same move twice in a row doesn't grow the chain* (it still scores).
 - **Verbs:** Slash, Air-Slash, Stomp, Slide-Smash, Grind, Ride, Bounce, Launch, Domino, Near-Miss, Collect.
 - **Multiplier** = 1 + ⌊chain ÷ 4⌋, capped at ×8.
-- The chain **ends** on a bonk, a pit, or a timeout. Ending it **banks** points × multiplier, and the banked points fill **Wonder**.
-- **Near-miss:** passing within 0.3 H of a hazard or vehicle without contact.
-- **Domino:** objects broken by other objects. *Players who set up chain reactions get rewarded for being clever.*
+- A bonk or timeout **banks** the chain, and banked points fill **Wonder**.
+- **LEADING zone:** score × 1.5 while the hero is out in front.
 
-### The target flow sequence (from the brief, now fully supported)
+### The target flow sequence
 
-> Jump → **slash sign** (Slash) → **slash-hop onto car** (Bounce) → **launch to wire** → **grind** (Grind) → **slash pole ahead** (Air-Slash, the wire snaps → Launch) → pole **falls onto fence** (Domino) → **land on falling pole, run down it** → **drop onto a passing truck** (Ride) → continue.
->
-> = 8 distinct verbs, ×3 multiplier and rising, frame position pushed to "Out Front."
+> Jump → **slash sign** → **slash-hop onto car** (Bounce) → **launch to wire** → **grind** → **slash the pole ahead** (wire snaps → Launch) → pole **falls onto fence** (Domino) → **run down the falling pole** → **drop onto a passing truck** (Ride) → keep going.
 
-### Trip scoring and ranks
+### Ranks and long-term mastery
 
-- **Score:** banked chains × Out-Front bonus + distance completion + collectibles.
-- **Stars:** 1/2/3 stickers by score threshold. A **gold rim** for 3 stars + never lost + all 3 trip objectives.
-- **Trip objectives** (3 per trip, authored): e.g., "Make the light turn green," "Ride a semi for 5 seconds," "Domino 5 poles in one fall."
-
-### Long-term mastery
-
-- Per-trip **global leaderboards** (and friends).
-- **Long Drive (endless):** a procedural highway from the segment library, escalating speed, a **daily seed**. The run ends when the kid gets bored.
-- **Replay last chain:** one button saves the last 15 s as a clip. **This is a growth feature.** The game's marketing *is* players' clips.
+- **1–3 stars** per trip by score. **Gold rim** for 3 stars plus all 3 trip objectives (e.g., "Ride a semi for 5 seconds," "Domino 5 poles in one fall").
+- Per-trip **leaderboards**.
+- **Long Drive** (endless): procedural highway from the segment library, rising speed, a **daily seed**. It ends when the kid gets bored.
+- **Replay last chain:** saves the last 15 s as a clip. The game's marketing is players' clips.
 
 ## 13. Audio Direction
 
 ### The core trick: the radio song becomes the soundtrack
 
-Music **starts diegetic**: a song playing on the car radio, band-limited, mono, slightly crackly, under road noise. **As Wonder rises, the music leaves the radio**:
+Music **starts on the car radio** (tinny, mono, under road noise) and **leaves the radio as Wonder rises**:
 
-| Tier | Music state |
+| Tier | Music |
 |---|---|
-| 0 | Tinny car-radio mix, low in the mix, a DJ or ads occasionally. |
-| 1 | The EQ opens, it goes stereo, a light kid-hummed melody layer. |
-| 2 | Drums and bass stems, full-range, energetic. |
-| 3 | Full orchestral/synth arrangement of **the same melody**. Road noise ducks. |
-| Giant | A choir or brass hit, peak layer. |
-| Lost / tier drop | A filter sweep *back into the radio*. |
-| Arrival | Folds back to the radio. Engine off. Silence. |
+| 0 | Tinny car-radio mix, quiet. |
+| 1 | The EQ opens, it goes stereo, a hummed melody layer. |
+| 2 | Drums and bass, full-range. |
+| 3 | Full arrangement of **the same melody**. Road noise ducks. |
+| Giant | Peak layer. |
+| Wonder drop | A filter sweep back toward the radio. |
+| Arrival | Settles back to the radio. Engine off. Quiet. |
 
-**Each trip's radio song is an arrangement of the main theme** in the parent's music taste for that drive (oldies, country, 2000s pop, smooth jazz at Grandma's). There's one main theme and many arrangements, which is cost-efficient for a small team, and the theme becomes iconic.
-
-**Rhythmic cues:** the turn signal tick is quantized to the music tempo, and the rain wipers act as percussion in the Rainy Drive.
+Each trip's radio song is an arrangement of **one main theme** in a different style. That's cost-efficient, and the theme becomes iconic.
 
 ### Car layer (always present, ducked by Wonder)
 
-Road hum (it changes with surface: asphalt, concrete seams, gravel, bridge deck), tire thumps on expansion joints, engine note that follows the speed curve, wind noise (rises at highway speed), turn signal, seatbelt creak, the A/C fan, rain on the roof, the tunnel's roar and pressure change.
+Road hum (asphalt, concrete seams, gravel, bridge deck), tire thumps, an engine following the speed curve, wind at highway speed, the turn signal (tick synced to the music tempo), rain on the roof, the tunnel roar.
 
 ### Family layer
 
-Sparse, warm, **mostly muffled**. The kid isn't listening, so adult speech is filtered behind the kid's focus. It's clearer at stoplights and arrivals. A small set of short lines ("Almost there," "Who wants fries?", "Look, a horse!"), a sibling's "YELLOW CAR!", a baby fussing mid-campaign, a dog panting. Keep localization light: it's mostly wordless murmurs and a few short barks.
+Sparse and muffled. The kid isn't really listening. A few short lines ("Almost there," "Who wants fries?") that are clearer at stoplights and arrivals. Very little to localize.
 
 ### Hero / world SFX
 
-- **Footsteps:** light and quick, differing by surface (grass, gravel, metal roof, wire hum).
-- **Slashes:** whoosh plus material impact. **Mouth sounds:** at Tier 0–1, each action is doubled by the kid's whispered mouth-sound effects ("shhhing!", "pkew!", "brrrrrrr" while grinding). By Tier 3 they've been replaced by full cinematic SFX. *Imagination literally upgrades the sound effects.* It's cheap to record, very funny, and very recognizable.
-- **Materials:**
-  - Wood: a dry toy-block *clack* plus a real wood crack underneath.
-  - Metal: a bright *clang* and ring-out.
-  - Glass: a crisp tinkle.
-  - Foliage: a whumpf plus leaf rustle.
-  - Concrete: a deep thud plus grit.
-- **Electrical:** a wire grind buzz with pitch tied to speed, a snapping-wire *TWANG* plus crackle on the whip, sparks.
-- **Toy reactors:** cars *boing* (spring) with a soft rubber squish. Cows *moo*.
-- **Ambience by trip:** birds and lawnmowers in the neighborhood, crickets and wind in the country, gulls at the beach, city traffic, a mountain wind howl.
+- **Footsteps** by surface (grass, gravel, metal roof, a buzzing wire).
+- **Mouth sounds:** at Tier 0–1, the kid's whispered effects double each action ("shhhing!", "pkew!", "brrrrr" while grinding). By Tier 3 they've become full cinematic SFX. *Imagination upgrades the sound effects.*
+- **Voxel destruction:** a satisfying **plastic/wood toy-block clatter** for the cube spray (many tiny clicks with randomized pitch, voice-limited) layered on a material crack: wood crack, metal clang, glass tinkle, foliage whumpf, concrete thud.
+- **Electrical:** wire grind buzz, a *TWANG* plus crackle on a snap.
+- **Toy reactors:** cars go *boing*, cows *moo*.
+- **Heads-Up cue:** a short, distinct rising tone plus the actual sound of the incoming object.
+- **Ambience by trip:** lawnmowers, crickets, gulls, city traffic, mountain wind.
 
 ### Middleware
 
-Godot 4's built-in `AudioStreamInteractive` / `AudioStreamSynchronized` cover the stem/tier system for the MVP. Evaluate FMOD (via the GDExtension integration) for the vertical slice if the adaptive layering needs more control.
+Godot 4's built-in interactive and synchronized audio streams for the MVP. Evaluate FMOD for the vertical slice if needed.
 
 ## 14. Opening Sequence
 
-**This is the first impression and the trailer's cold open. It has to be perfect.**
+**0. Black.** Car door thunk, seatbelt click, engine start. A parent, muffled: *"Okay, quick stop at the store."* Road hum fades in.
 
-### Shot-by-shot
+**1. Side view (title screen).** The camera is inside the car, across the back seat, looking at the kid **in profile**. Behind them is the window, and the world outside is **out of focus**: colorful blurry blocks going by. The kid is bored: feet swinging, chin on hand. **The title is drawn in the window condensation.** Tinny radio.
 
-**0. Black.** Audio only: car door thunk, seatbelt click, engine turnover, a parent, muffled: *"Okay, quick stop at the store."* The car pulls away and road hum fades in.
+**2. Prompt.** *Press to look outside.*
 
-**1. The side view (title screen).** Fade in. The camera sits **inside the car**, across the back seat, looking at the kid **in profile**. Behind the kid is their window, and the world outside is **out of focus**: bright, colorful smears going by. The kid is bored: feet swinging, chin on hand, fiddling with the seatbelt. **The title is written in the window condensation** behind their head, as if a finger drew it. A slow idle loop. Radio song (tinny) plays.
+**3. The turn.** The kid's **eyes move first**, then the head turns to the window, and they scoot closer. **Rack focus** pulls from the kid to the outside, and the blur resolves into the crisp voxel world. *That's the first clear look at the art style.*
 
-**2. Player interaction.** A small glyph prompt: *Press to look outside.* (Any button, or a tap/click.)
+**4. The camera move.** A smooth ≈ 4 s **arc and push** over the kid's shoulder and into their head position.
 
-**3. The turn.** On press:
-- The kid's **eyes move first**, a flicker of curiosity, and then the head turns toward the window. Their body follows, scooting closer.
-- **Rack focus:** the depth of field pulls off the kid and onto the outside world. The blur resolves into the crisp toy-diorama world. *This is the first time the player sees the art style clearly.*
+**5. The POV handoff.** The kid's **reflection fades up in the glass**. The frame settles into place: door panel, seatbelt, cupholder. Tier 0: the world is muted and ordinary.
 
-**4. The camera move.** A smooth **arc and push**, about 4 s: the camera swings around **behind the kid's head**, over their shoulder (we see their hair and ear, the window filling up), and then **pushes into the head position**. The kid's body leaves the frame as the camera takes its place.
+**6. The birth of the hero.** The kid breathes on the glass. **A finger draws a little stick figure with a scarf** in the fog, lined up with the roadside. With a soft *pop* and a burst of cubes, **the doodle becomes the voxel hero**, standing on the roadside. He **looks up at the window**, nods, and starts running alongside.
 
-**5. The POV handoff.** As the camera settles into the Kid Head Rig, **the kid's reflection fades up in the glass**, so the player sees the face they now are. The window frame, door panel, seatbelt, and cupholder land into their framing positions. *Tier 0: the world outside is muted and ordinary.* It's just a street.
+**7. Control.** A Jump glyph appears drawn on the glass. A mailbox approaches. *Play begins.*
 
-**6. The birth of the hero.** The kid breathes on the glass, which fogs a little patch. **A finger enters the frame and draws a small stick figure with a scarf** in the condensation. The drawing lines up with the roadside. With a soft *pop* and a burst of color, **the doodle becomes the hero**, standing on the roadside, pale doodle-white (Tier 0).
+**Rules:** the first viewing runs ≈ 25 s and can be skipped from step 2 after that. **Later trips** use a ≈ 6 s version: side view → turn → push in → the hero vaults in from the roadside.
 
-The hero **looks up at the window. Eye contact.** A small nod. He turns and starts running, keeping pace. The radio song gains one warm layer.
+## 15. Ending Concept: Reaching the Destination
 
-**7. Control.** A Jump glyph appears in condensation on the glass. A mailbox approaches. *Play begins.*
+**Every trip ends with arrival.** That's both the per-trip ending and the game's ending.
 
-### Rules
+### Per-trip arrival (≈ 10 s, then the score screen)
 
-- The first viewing is unskippable (≈ 25 s total). After that it's skippable from step 2.
-- **Every later trip** uses a *short* version (≈ 6 s): side view of the kid's new situation (what's in the car tells the story) → turn → push into POV → the hero vaults in from the roadside.
+1. A parent: *"Here we are."* The car slows and the speed curve eases to zero.
+2. The world eases back down from the current Wonder tier. Color settles, and the music folds back into the radio.
+3. The hero does a **final flourish** at the destination (a flip off the store sign, a landing pose by the school gate), turns to the window, and **waves**.
+4. The car parks. Engine off. The engine ticks as it cools. Quiet.
+5. The seatbelt clicks open and the kid's hand leaves the glass. **Score card**, drawn as stickers on the window.
 
-## 15. Ending Concept
+### The final arrival (Trip 12, The Big Trip)
 
-### Evaluating "the child falls asleep"
+The longest drive of the game builds to the biggest set piece, **the Long Bridge**, at peak Wonder. Then the road crests a hill, and **the ocean fills the window.** The car rolls into the beach parking lot. Through the window the hero runs down the sand to the water's edge, turns, and waves at the kid, bigger and brighter than ever. The kid's door slides open, there's sunlight and gulls, and **the credits roll over the beach view**. The music plays its final full arrangement of the theme, *without* the radio filter for the first time.
 
-| Option | Assessment |
-|---|---|
-| **A. The kid falls asleep, and the world dissolves.** | Lovely *once*, but passive, a bit sad, and predictable as a *finale*. **Used, but as the gateway to the Dream (Trip 12), not as the ending.** Falling asleep is where imagination becomes the *dream*. That's the climax, not the goodbye. |
-| B. Arrival at a destination | It's the per-trip ending already. Not big enough for the finale. |
-| C. The hero says goodbye forever | A Bing Bong cliché. Manipulative. **Rejected.** |
-| D. The kid grows out of it (looks at a phone) | Cynical, and it lectures the player. **Rejected.** |
-| **E. Moving Day → the Dream → Arrival → Years Later** | **Chosen.** |
+After the credits: *"Where to next?"* → trip select, Long Drive, and ranks.
 
-### The chosen ending
-
-**Trip 11 — Moving Day.** The interior is packed with boxes, so the window is partly blocked: a smaller frame. You can't see the old neighborhood any more. The hero runs alongside through the whole move, the one constant.
-
-**Trip 12 — The Night Drive → The Dream.** The long drive to the new city at night. The kid's reflection blinks slowly and the camera droops. The world **dissolves upward into the Dream** (Tier 4): the car lifts off the road, the Run Line becomes clouds, rooftops, the moon. **The Grey**, boredom and sleep made into a creature, is the final encounter. You can't "kill" it. You **outrun it until dawn**. Sunrise breaks through the window. The kid wakes in the new town. The hero is still there, running beside the car down unfamiliar streets. *Arrival: a new house.* The kid unbuckles.
-
-**Epilogue — Years Later.** Fade in on **the same side-view composition as the title screen**, but it's a newer car, and a different child is in the backseat, bored and swinging their feet.
-
-The player presses the button. The camera turns, but this time **it goes to the driver's seat**. **We're the adult now**, stopped at a red light. A glance in the rearview mirror: their child staring out the window. A glance out the *driver's* window:
-
-**the old hero is running alongside the car.** Older, scarf a bit frayed, unmistakable. He looks up. Nods. Then a **new, tiny, differently designed hero** (the child's own invention) appears beside him. The old hero gestures *go on* and peels away. The light turns green.
-
-**Credits are a playable run** as the child's new hero, with **credits names on breakable road signs**. Short, joyful, no fail state.
-
-*Why this is stronger:* it lands the exact line from the pitch, *"I used to do exactly that,"* and turns it around: *someone is doing it now, in your backseat.* The target audience is now the parent, and it tells them, without a single word, that the imagination didn't die. It got passed on.
+The ending is simple and happy: **you got there.**
 
 ## 16. MVP Specification
 
-**Goal: prove the fantasy in one trip.**
-*"Sit in the backseat → look out the window → control the imagined hero → run beside the car → jump/slash/destroy things → feel like a kid imagining an adventure."*
+**Goal:** prove the fantasy in one trip. *Sit in the backseat → look out the window → control the imagined hero → run beside the car → jump/slash/destroy voxel things → feel like a kid imagining an adventure.*
 
-**Timebox: 6–8 weeks** (solo + AI-assisted), after a 2-week feel prototype.
+**Timebox:** 6–8 weeks (solo + AI), after a 2-week feel prototype.
 
 ### In scope
 
-- **One trip** (≈ 3 min): neighborhood → arterial road → short highway stretch → arrival.
-- **Opening sequence** (simplified): side view → press → turn → push into POV → hero appears (pop, not drawing).
-- **Kid Head Rig** camera with a real 3D interior frame (greybox-plus) and glass with a basic reflection plus smudge.
+- **One trip** (≈ 3 min): neighborhood → main road → short highway → **arrival**.
+- **Opening** (simplified): side view → press → turn → push into POV → hero pops in.
+- **Kid Head Rig** with a 3D interior frame (greybox-plus) and basic glass reflection.
 - **Hero:** auto-run, Jump + air jump, Slash (ground/air, slash-hop), **wire grind**.
-- **Frame position system:** bonks, lost-behind-C-pillar, return, "kid gets bored" fail, landmark checkpoints.
-- **Destructibles:** mailbox (Pop), picket fence (Run), road sign (Pop), **telephone pole (Topple + domino + wire snap)**, tree (Topple).
-- **One vehicle type** (car): rideable plus bouncer.
-- **Car speed timeline** with one **stoplight** (no challenge yet: the world just pauses).
-- **Chain + variety rule + multiplier.**
-- **Wonder: 2 tiers** (0 and 2), palette swap plus one music stem plus the hero color change.
-- **ChunkSim** debris (fake rigid bodies) plus hitstop, shake, particles.
-- **Audio:** road hum, one radio track in 2 stems with the radio filter, about 15 core SFX.
-- **UI:** start, pause, retry, end-of-trip score. Nothing else.
+- **Frame zones** (Leading / Pacing / Falling Behind) with clear visuals.
+- **Wonder:** Tiers 0 and 2, palette swap plus one music stem plus hero color. The "kid gets bored" fail with its warning. Checkpoints.
+- **Heads-Up** warning for one fast vehicle type.
+- **Voxel destructibles:** mailbox, fence, sign, **telephone pole (topple + domino + wire snap)**, tree. Chunks plus cube sprays.
+- **One vehicle** (car): ride and bounce.
+- **Car speed timeline** with one stoplight breather.
+- **Chain** with the variety rule and multiplier.
+- **Audio:** road hum, one radio track in 2 stems, ≈ 15 SFX including the cube-clatter.
+- **UI:** start, pause, retry, end score.
 
-### Out of scope (explicitly)
+### Out of scope
 
-Stomp, slide, Giant, enemies, collectibles, cosmetics, multiple trips, set pieces, Kid Logic, saving beyond the high score, settings beyond volume, controller remapping.
+Stomp, slide, Giant, enemies, collectibles, cosmetics, multiple trips, set pieces, settings beyond volume.
 
-### Success criteria (go/no-go)
+### Success criteria
 
-1. **The clip test:** show a 10-second capture to 10 people who haven't seen it. ≥ 7 should say some version of *"I used to do that."*
-2. **The replay test:** ≥ 50% of playtesters voluntarily replay the trip to beat their score.
-3. **The feel test:** jump and slash feel good in a blind test *without* the window frame (as a plain side-scroller). If the core doesn't hold up there, the frame can't save it.
-4. **Readability:** players can tell breakable from hazard after one minute, without being told.
-5. **Performance:** locked 60 fps on Steam Deck.
+1. **Clip test:** ≥ 7 of 10 people say some version of *"I used to do that"* from a 10-second capture.
+2. **Fun test:** ≥ 50% voluntarily replay the trip to raise their score.
+3. **Accessibility test:** non-gamers reach the destination on their first or second try.
+4. **Feel test:** jump and slash feel good even without the window frame.
+5. **Destruction test:** breaking a telephone pole makes playtesters laugh or say "whoa."
+6. **Performance:** locked 60 fps on Steam Deck with heavy cube sprays.
 
 ## 17. Vertical Slice Specification
 
-**Goal: final-quality proof. It's the trailer, the Steam page, the publisher pitch, and the Next Fest demo.**
-**Timebox: about 4 months after MVP.**
+**Goal:** final-quality proof for the trailer, the Steam page, and the demo. **≈ 4 months after MVP.**
 
-### Content
+- **Three trips at final quality:** *The Errand*, *Country Road* (Race the Train), *The Interstate* (the Semi-Dragon).
+- **Full move set,** including Stomp, Slide, Ride, Bounce, and **Giant**.
+- **Wonder Tiers 0–3** with the transformation wave and 4-stem music.
+- **≈ 15 destructible types,** 4 vehicle types, 2 imagined enemies.
+- **Heads-Up** for every fast object.
+- **Final art:** voxel kit, palettes, hero, kid, minivan interior, glass, tilt-shift.
+- **Ranks, objectives, stickers,** replay clip.
+- **Polish:** juice pass, mouth sounds, accessibility (Steady Cam, Window Zoom, Sunday Driver).
+- **PC + Steam Deck,** full controller support.
 
-- **Three trips at final quality:**
-  1. *The Errand* (onboarding, full drawing-the-hero opening).
-  2. *The Interstate* (speed, riding vehicles, **Semi-Dragon** encounter, tunnel "hold your breath").
-  3. *Country Road* (**Race the Train** set piece, cows, hay, slide).
-- **Full move set:** Jump, Air Jump, Slash, Slash-Hop, Stomp, Slide, Grind, Ride, Bounce, **Giant**.
-- **Wonder Tiers 0–3** with the full transformation wave shader and 4-stem music.
-- **About 15 destructible types**, 4 vehicle types, 2 imagined enemies.
-- **Kid Logic:** Stoplight Challenge, trucker honk, one Detour secret branch.
-- **Interior storytelling** for the 3 trips, with treasures appearing in the car.
-- **Final art direction**: final hero, kid, minivan interior, glass, tilt-shift, palette system.
-- **Ranks, objectives, stickers.** A replay-clip button.
-- **Polish:** full juice recipe, mouth-sounds, hitstop tuning, accessibility (Steady Cam, Window Zoom, Sunday Driver assist).
-- **Platforms:** PC + Steam Deck verified-quality, full controller support.
-
-### Exit criteria
-
-- A **trailer can be cut from real gameplay** with no faked shots.
-- A Steam page goes live. Wishlist velocity is the market test.
-- Next Fest demo: median session ≥ 20 min, and at least one clip per 100 players is shared or uploaded.
+**Exit criteria:** a trailer cut from real gameplay, a Steam page live, Next Fest demo median session ≥ 20 min.
 
 ## 18. Full Game Specification
 
-> **About "Early Access":** the campaign is a short emotional arc, so I recommend **against Early Access** for it. Released in pieces, the ending loses its impact. Use a **free demo** (the vertical slice) plus **Long Drive** for community testing instead. If cash flow requires EA, ship the *Expanded* tier below as EA with the campaign ending withheld.
+> **About Early Access:** not recommended for the campaign. Use a free demo (the vertical slice) plus **Long Drive** for community testing. If EA is financially necessary, ship the Expanded tier as EA.
 
-### Expanded (demo / optional EA, about 6 months after the slice)
+### Expanded (demo / optional EA, ≈ 6 months after the slice)
 
-- 6 trips (adds Grocery Run + Car Wash, School Pickup, Rainy Drive).
-- **Long Drive** endless mode with a daily seed and leaderboards.
-- The License Plate Game, the cosmetic set (≈ 20 items), the paper road map trip-select.
+- 6 trips.
+- Long Drive with a daily seed and leaderboards.
+- ≈ 20 cosmetics.
+- Trip select drawn as a **paper road map**.
 
 ### Full version (1.0)
 
-- **12 trips + Dream + Epilogue**: the full "One Year of Rides" campaign, with 7 set pieces/bosses.
-- **Wonder Tiers 0–4** (Tier 4 is Dream-only).
-- **≈ 35 destructible types**, 8 vehicle types, 6 imagined enemies.
-- **Backseat Co-op** (local, 2P): a sibling sits in the other seat, and two heroes share the same window. Combos can chain *between* players. *It's the "my sister had her own guy" feature and a strong couch/streaming hook.* Ship it at 1.0 if it's on track, otherwise as a free post-launch update.
-- **Long Drive**, daily routes, global and friends leaderboards.
-- **Cosmetics:** ≈ 40 (hero drawings, swords, trails, mouth-sound packs, radio stations, stickers, Cardboard World skin).
-- **Photo mode** (it's a window, so naturally it's "press your face to the glass").
-- **Secret trips:** *Wrong Turn* and *The Drive-In*.
-- **Accessibility:** full remapping, Steady Cam, Window Zoom, Sunday Driver (car drives 20% slower), No-Lose (the hero is never lost), colorblind-safe shape coding, subtitles for the few lines.
-- **Platforms:** Steam (PC/Deck) at launch, Switch-class port shortly after. Mobile is evaluated post-launch (the controls already fit).
+- **12 trips**, ending with The Big Trip's arrival at the beach.
+- **Wonder Tiers 0–3**, plus Giant.
+- **≈ 35 destructible types,** 8 vehicle types, 6 imagined enemies, 8 set pieces.
+- **Backseat Co-op** (local 2P): a sibling sits in the other seat, two heroes share the window, and chains can link between players. Ship it at 1.0 if it's on track, otherwise as a free update.
+- **Long Drive,** daily routes, leaderboards.
+- **≈ 40 cosmetics.**
+- **Photo mode** (from inside the car).
+- **Accessibility:** remapping, Steady Cam, Window Zoom, **Sunday Driver** (car drives 20% slower), **No Boredom** (Wonder can't empty), colorblind-safe shape coding, subtitles.
+- **Platforms:** Steam (PC/Deck) at launch, Switch-class port after. Mobile evaluated later.
 
 ## 19. Technical Architecture
 
-### Key architectural decisions
+### Key decisions
 
-1. **The car moves through a static world. The world doesn't scroll past a static car.**
-   The car rig (camera + interior) and the hero move forward along +X at real speed. The world is static in physics space. This makes debris, domino falls, and physics *naturally correct*: chunks are left behind and drift out the back of the window. **A floating origin** rebases everything every 1,000 units to keep floats precise.
+1. **The car moves through a static world.** The car rig (camera + interior) and the hero move forward along +X. The world stays still. Debris and physics are naturally correct, and cubes get left behind. A **floating origin** rebases every 1,000 units.
 
-2. **The gameplay plane is a straight line. Curves are faked.**
-   The Run Line is always straight along X, with height following an authored profile (hills, bridges). **Turns are a presentation layer**: sun and sky rotation, interior light sweeps, distant layer drift, slight camera roll. Gameplay is never warped by curves.
+2. **The gameplay plane is straight. Curves are faked.** Height follows an authored profile (hills, bridges). Turns are presentation only: sun rotation, interior light sweeps, background drift, slight roll.
 
-3. **The hero is a custom kinematic controller, not a physics body.**
-   It's deterministic at a fixed 60 Hz, constrained to the plane (Z locked), with swept collision (high speeds would tunnel otherwise).
+3. **The hero is a custom kinematic controller.** Deterministic at 60 Hz, plane-locked, with swept collision.
 
-4. **Two-tier physics.**
-   - **ChunkSim (custom, the clever bit):** most debris pieces are **fake rigid bodies**: position, velocity, orientation, and angular velocity, colliding **only with the analytic ground profile** (and a few authored planes), with restitution, friction, and a sleep threshold. No chunk-chunk collision. They're rendered through **MultiMesh** instancing by kit piece. That means *500+ live chunks for close to zero cost* and it looks 90% as good as real rigid bodies, because players can't tell at this speed.
-   - **Real physics (Jolt) only for "hero pieces":** rolling hay bales, rolled shopping carts, the occasional big chunk that must interact. Capped at ≈ 30 active bodies.
-   - **Scripted:** topples (eased hinge rotation + swept capsule), vehicle reactions (spring-damper squash on a transform, not a sim), set pieces (animation).
-   - **Verlet:** wires and ropes (8–12 points each, only after snapping; before that they're analytic catenary curves).
+4. **Voxel content pipeline.**
+   - Models are authored in **MagicaVoxel** (`.vox`).
+   - A custom **VoxPipeline** tool (offline, AI-writable) converts them:
+     - **Greedy-meshed** render mesh, with the palette index stored per vertex.
+     - **Break clusters**, authored as separate layers or groups in MagicaVoxel and exported as separate chunk meshes.
+     - **Cut sockets** (for Topple objects) from marker voxels.
+     - A **cube-spray color list** (a weighted sample of the model's voxel colors).
+     - Simple collision boxes.
+   - Everything lands in Godot as ready-to-use scenes and resources.
 
-5. **Data-driven trips assembled from segments.**
-   A Trip is a **timeline resource**: a car speed curve, a segment list, events (stoplights, lane changes, tunnels, dialogue barks, set pieces), time-of-day, weather, interior preset, and Wonder cap. **Segments** are authored scenes about 40 H long, placed by the **SegmentStreamer** ahead of the car and freed behind it.
+5. **Three-tier physics.**
+   - **Cube spray: GPU particles.** Each small cube is a particle instance with a box mesh, colored from the object's spray list, with gravity, spin, and **collision against a heightfield** of the road (Godot's GPU particle heightfield collision). Thousands of cubes for very little CPU.
+   - **Big chunks: ChunkSim.** A lightweight custom "fake rigid body" sim: position, velocity, rotation, and spin, colliding only with the analytic ground profile, with bounce, friction, and sleep. No chunk-to-chunk collision. Rendered with MultiMesh. Hundreds of chunks cheaply.
+   - **Real physics (Jolt): only a few "hero pieces"** that must interact (rolling hay bales, shopping carts). Capped at ≈ 30.
+   - **Scripted:** topples (eased hinge fall plus swept capsule for domino), vehicle squash/bounce (spring-damper on transforms), set pieces.
+   - **Verlet:** snapped wires (8–12 points). Intact wires are curves.
 
-6. **Palette-driven world shading.**
-   All exterior kit pieces use **vertex colors as palette indices** into one shared palette texture. **Wonder tiers and trips = palette textures**, and transitions are a world-space **"imagination wave"** (a radius from the hero in a global shader uniform that blends palette A→B). Tier props (dragon armor on the semi, whale clouds) are toggled **attachment meshes**. The whole transformation system is shader uniforms plus a visibility toggle.
+6. **Palette-driven shading.** Voxel models use palette indices, so **Wonder tiers and trips are just palette textures**. Transitions are a world-space **"imagination wave"** from the hero that blends palette A into palette B. Tier-only props (truck armor, cloud whales, imagined platforms) are toggled meshes. The voxel bevel/edge highlight is in the same shader.
 
-7. **Layered rendering.**
-   The interior and exterior render in one scene with **separate light layers/masks** (the interior gets a soft fill plus a moving "sun patch" light cookie, the exterior gets the hard key). The glass is a transparent quad with reflection (a pre-rendered kid face reflection texture driven by head pose, *not* real planar reflection), smudge, rain, and condensation maps. Tilt-shift is a post-process vertical gradient blur masked by Run Line screen height.
+7. **Rendering layers.** The interior and exterior share a scene but use separate light layers. The glass is a shader quad with a pre-rendered kid reflection driven by head pose. Tilt-shift is a masked half-res blur.
+
+8. **Heads-Up system.** Every `HeadsUp` object registers its predicted arrival time at the hero's position. A HeadsUpDirector shows the edge arrow and plays the cue 1.5 s ahead.
 
 ### Module layout (Godot project)
 
 ```
 /game
   /core        GameState, TripDirector (timeline), Checkpoints, SaveSystem, Settings
-  /car         CarRig, KidHeadCamera, InteriorFX (light sweeps, bumps), GlassFX, KidAnimator
+  /car         CarRig, KidHeadCamera, InteriorFX, GlassFX, KidAnimator
   /hero        HeroController (state machine), HeroInput (buffering), HeroAnim, HeroFX
-  /frame       FramePosition (u, lost/return logic, Out-Front bonus)
-  /world       SegmentStreamer, Segment, ParallaxLayers, LandmarkBillboards, PaletteSystem, FloatingOrigin
+  /frame       FrameZones (position, zones, catch-up, Leading bonus)
+  /world       SegmentStreamer, Segment, ParallaxLayers, Landmarks, PaletteSystem, FloatingOrigin
   /interact    Breakable, Toppler, Solid, Hazard, Bouncer, Grindable, Rideable, Launcher,
-               Collectible, KidLogicTrigger, Imagined
-  /fx          ChunkSim (+ MultiMesh renderers), DebrisPool, Hitstop, CameraShake, ParticleLibrary, Rumble
+               HeadsUp, Collectible, Imagined
+  /fx          CubeSpray (GPU particles), ChunkSim (+ MultiMesh), Hitstop, CameraShake, Rumble
   /score       ChainSystem, WonderSystem, Ranks, Objectives
-  /audio       AudioDirector (stems, radio filter, ducking), CarAmbience, SfxBank, MouthSounds
-  /ui          TitleSideView, PauseNotebook, PaperMapSelect, EndOfTrip, GlassHUD
+  /audio       AudioDirector (stems, radio filter), CarAmbience, SfxBank, MouthSounds
+  /ui          TitleSideView, Pause, PaperMapSelect, EndOfTrip, GlassHUD, HeadsUpArrows
 /data
-  /trips       *.tres  (TripDefinition: speed curve, segments, events, palette, interior preset)
-  /segments    *.tscn  (authored segment scenes, tagged with difficulty/speed band/verbs)
+  /trips       *.tres  (speed curve, segments, events, palette, interior props, Wonder cap)
+  /segments    *.tscn  (authored segments tagged by speed band / verbs / difficulty)
   /palettes    *.png   (per trip × per tier)
-  /kit         kit piece meshes + pre-split variants
+  /vox         source .vox models
 /tools
-  SegmentValidator     (headless: reachability via simulated jump arcs at each speed band)
-  BotPlayer            (scripted/greedy auto-player for regression + balancing)
-  TripPreviewer        (scrub a trip timeline in editor)
-  KitAssembler         (build props + break recipes from kit pieces)
+  VoxPipeline          (.vox → meshes, clusters, sockets, spray colors)
+  SegmentValidator     (reachability + minimum 1.2 s visibility checks)
+  BotPlayer            (auto-player for regression/balancing)
+  TripPreviewer
 ```
 
-### Event bus
+**Event bus:** systems communicate through signals (`object_broken`, `chain_banked`, `wonder_changed`, `heads_up`, `car_event`, …). Audio, FX, score, and UI subscribe, so each system can be edited in isolation.
 
-Systems talk through a small signal bus (`object_broken`, `chain_banked`, `wonder_tier_changed`, `hero_lost`, `car_event`, …). Audio, FX, score, and UI all subscribe, so nothing hard-references them. This keeps systems AI-editable in isolation.
-
-### Determinism and replays
-
-Hero, frame position, chain, and Wonder are deterministic from (trip seed + input log), because debris doesn't affect gameplay. That gives **cheap input-log replays** for the "replay last chain" clip and for **leaderboard validation**.
+**Determinism:** hero, frame position, chain, and Wonder are deterministic from (trip + input log), because debris doesn't affect gameplay. That gives cheap replays, clips, and leaderboard validation.
 
 ## 20. Recommended Engine
 
-**Godot 4 (current stable 4.x), with the built-in Jolt physics, the Forward+ renderer on PC, and the Mobile renderer for Switch-class hardware.**
+**Godot 4 (current 4.x), with built-in Jolt physics, Forward+ on PC, and the Mobile renderer for Switch-class hardware.**
 
-Why:
-- **Text-based scenes and resources** (`.tscn`/`.tres`) mean AI tools can read, write, and diff levels, data, and scenes directly. This is the deciding factor for a one-person AI-assisted team.
-- The game's rendering needs are modest and stylized: no GI, one light, custom shaders, MultiMesh. Godot handles them well.
-- No licensing fees, fast iteration, a small footprint, good Steam Deck performance.
-- GDScript for gameplay and tools, plus C# or a GDExtension (C++) **only** if ChunkSim needs it (start in GDScript, profile, and port the hot loop if needed).
+- **Text-based scenes and resources**, so AI tools can read and write levels, data, and scenes directly. This is the deciding factor.
+- Good GPU particles with **heightfield collision**, which is perfect for cube sprays.
+- MultiMesh for chunks and repeated voxel props.
+- No licensing fees, fast iteration, good Steam Deck performance.
+- GDScript for gameplay and tools. Port hot loops (ChunkSim) to C# or GDExtension only if profiling says so.
 
-**Trade-offs, acknowledged:**
-- Console porting goes through third-party partners (e.g., W4 Games). Budget for it and contact them early, during the vertical slice.
-- If console-first or a publisher deal requires it, **Unity 6 (URP)** is the fallback. Every design decision in this document carries over unchanged.
-- **Not Unreal:** overkill for this art style, heavier iteration, and worse for AI-driven text-file workflows.
-- **Not Three.js/web** for the product. It's fine for a throwaway *feel* prototype if that's faster for you, but don't build the real game on it.
+**Trade-offs:** console ports go through a partner (e.g., W4 Games), so contact them during the vertical slice. **Unity 6 (URP)** is the fallback if console-first; the design carries over unchanged. Not Unreal (overkill, a worse fit for AI text workflows).
 
 ## 21. Recommended Asset Strategy
 
-1. **The Kit is the art pipeline.** Build **≈ 40 beveled kit primitives** in Blender (beveled boxes, wedges, octagonal cylinders, rounded blobs, slabs, planks), each with **1–2 pre-split variants**. Every exterior prop is **assembled** from kit pieces, either in Blender (Geometry Nodes) or in-engine (KitAssembler). Break recipes are generated automatically from the assembly.
-2. **No textures outside.** Vertex color palette indices plus one palette texture. Baked vertex AO. That's tiny memory, instant recoloring, and a consistent look.
-3. **Interior = the hero asset.** One minivan rear-seat interior at the highest quality in the game (it's on screen 100% of the time), made modular so per-trip **dressing** swaps (bags, boxes, towels, baby seat) are simple prop placements. The epilogue car is a re-dressed variant.
-4. **Characters:** the hero (simple rig, ≈ 20 bones, hand-keyed stepped animation, ≈ 25 clips) and the kid (≈ 12 clips: bored idle variants, turn, lean, breathe-on-glass, draw, wave, sleepy, wake, unbuckle). These two should be **commissioned from a skilled animator or animated by hand.** Feel lives here.
-5. **Audio:** commission a composer for **one main theme + arrangements** (radio versions + 4-stem fantasy versions per trip). Record the mouth sounds and kid barks with a child voice actor (with proper consent and guardian contracts) or an adult who can do convincing kid mouth-SFX. SFX come from libraries plus custom toy-block foley (actual wooden blocks, plastic toys).
-6. **Generative AI art in shipped assets:** **No.** It's inconsistent with a tight kit-based style, has legal ambiguity, and draws audience backlash in exactly this game's nostalgic, handmade market. Use it for *mood exploration and reference boards only*.
+1. **Voxel models in MagicaVoxel.** It's free, fast, and voxel art is approachable for a solo dev. Build a **library of reusable voxel parts** (pole segments, crossbars, canopy blobs, wheels, sign plates) and assemble variants from them.
+2. **Author break clusters in the model** (separate layers), and the pipeline handles the rest.
+3. **No textures outside.** Palette only. Tiny memory, instant recoloring for trips and Wonder tiers.
+4. **The interior is the hero asset.** One minivan rear-seat interior (smooth, non-voxel) at the highest quality in the game, since it's on screen 100% of the time. Per-trip props are a few simple swaps.
+5. **Characters:**
+   - Voxel hero, rigged by body part (voxel parts parented to bones, which is easy to animate), ≈ 25 clips.
+   - Smooth-modeled kid, ≈ 10 clips.
+   - Animation is hand-keyed by you or a contractor. Feel lives here.
+6. **Audio:** commission one main theme plus arrangements (radio versions and 4-stem versions). Record mouth sounds with appropriate consent (or an adult who can convincingly do them). Record **custom toy-block foley** (real wooden and plastic blocks) for the cube clatter, since it's the most-heard sound in the game.
+7. **Generative AI art in shipped assets: no.** Use it for reference and mood only. Voxel art is very achievable by hand, and this audience values handmade.
 
 ## 22. Procedural vs Handcrafted Content Strategy
 
 | Content | Approach |
 |---|---|
-| Campaign trips | **Handcrafted** sequences of **handcrafted segments**. Each trip is a designed experience with authored pacing. |
-| Segments | Handcrafted scenes, tagged (`speed_band`, `verbs`, `difficulty`, `height_profile`), with **light variant randomization** (which prop variant, ±small offsets) for freshness on replay. |
-| Set pieces | Fully handcrafted and scripted. |
-| Midground/background scenery | **Procedural scatter** (houses, trees, fields, fence lines) driven by a per-trip biome ruleset. No gameplay impact. |
-| Long Drive mode | **Procedural assembly** of the same segment library with difficulty and speed curves, Spelunky-style. **Never procedural geometry for gameplay.** |
-| Destruction | **Authored recipes** (cut sockets, piece sets) + **procedural variation** (random impulse spread, spin, piece variant choice). Reads as procedural, behaves predictably. |
+| Campaign trips | **Handcrafted** sequences of handcrafted segments |
+| Segments | Handcrafted, tagged, with small variant randomization for replay |
+| Set pieces | Fully handcrafted and scripted |
+| Background scenery | **Procedural scatter** of voxel props by biome rules |
+| Long Drive | Procedural assembly of the same segment library, Spelunky-style |
+| Destruction | Authored clusters and sockets plus procedural variation (impulse spread, spin, spray amounts) |
 
 The rule: **handcraft anything the player interacts with. Generate anything they only look at.**
 
 ## 23. Performance Considerations
 
-**Targets:** 60 fps locked on Steam Deck at native resolution, 60 fps (dynamic res) on Switch-class hardware, 120+ fps on mid-range PCs.
+**Targets:** 60 fps locked on Steam Deck, 60 fps (dynamic res) on Switch-class hardware, 120+ fps on mid-range PC.
 
-- **Draw calls:** MultiMesh per kit piece type for repeated props (fence posts, trees, poles) and for ChunkSim debris. Merge static segment geometry at load.
-- **Streaming:** only ≈ 3 segments ahead and 1 behind are live. Segments are pooled and re-used in Long Drive.
-- **Debris budgets:** ChunkSim ≤ 600 live chunks (oldest pop out first). Jolt bodies ≤ 30. GPU particles cap per system.
-- **Physics queries:** the hero uses a few shape casts per frame. Topples use one swept capsule per falling object per frame. Nothing else queries.
-- **Shadows:** one cascade, tight bounds around the Run Line. Blob shadows for debris and vehicles in the midground.
-- **Glass:** a pre-rendered reflection texture driven by head pose. No real-time planar reflection or SSR.
-- **Tilt-shift:** a two-pass separable blur at half resolution, masked. Cheap.
-- **Interior:** baked lighting plus a single animated light cookie for sun sweeps. Low-res shadow for the interior only.
-- **Parallax background:** cards and impostors, no real geometry past 150 m.
-- **Audio:** stems are streamed. SFX use voice-limiting per material category (max 4 wood cracks simultaneously).
-- **Floating origin:** every 1,000 units, with careful handling of in-flight debris and ropes (they're all child nodes of a "world root" that gets offset).
+- **Voxel meshes:** greedy meshing keeps triangle counts low. Merge static segment geometry at load. MultiMesh for repeated props.
+- **Cube spray budget:** ≈ 4,000 live GPU cubes on Deck (≈ 1,500 on Switch-class), with oldest shrink-popped first. Half the spray count in the distance, and scale counts by platform.
+- **ChunkSim:** ≤ 300 live chunks. **Jolt:** ≤ 30 bodies.
+- **Heightfield collision** for particles covers only the area around the gameplay plane and moves with the car.
+- **Streaming:** ≈ 3 segments ahead, 1 behind, pooled.
+- **Shadows:** one tight cascade. No shadows for spray cubes.
+- **Glass:** pre-rendered reflection, no real-time reflections.
+- **Tilt-shift:** half-res separable blur.
+- **Interior:** baked lighting plus one animated light cookie.
+- **Audio:** voice-limit the cube clatter (it's lots of tiny sounds, so use pooled one-shots with a max concurrency).
 
 ## 24. AI-Assisted Development Strategy
 
-**Treat AI as a fast junior engineer with perfect recall of docs and no taste.** You own the feel, taste, and art. AI owns the volume.
+**AI is a fast junior engineer with perfect documentation recall and no taste.** You own feel, art, and music. AI owns volume.
 
-### What AI tools should do
+### What AI should do
 
-- **Gameplay code in small modules** with clear interfaces (one system per file, signal-bus decoupled). Each module gets a short spec in `/docs/systems/<system>.md` that the AI reads before editing.
-- **Tools:** SegmentValidator, BotPlayer, KitAssembler, TripPreviewer, palette tooling, editor plugins.
-- **Shaders:** palette wave, glass, tilt-shift, curved horizon, rain-on-glass. AI drafts them, you art-direct.
-- **Data authoring:** generate segment *candidates* as `.tscn` text from verb and difficulty specs, then **validate with the bot** and **curate by hand**. AI proposes, you pick.
-- **Tests:** headless deterministic tests for hero physics (jump heights, coyote time), chain rules, frame position math, and **trip reachability**.
-- **Telemetry and balancing:** scripts that read playtest logs (where players get lost, which chains they find) and produce heatmaps.
+- **Gameplay code** in small, decoupled modules, each with a short spec in `/docs/systems/`.
+- **Tools:** VoxPipeline, SegmentValidator, BotPlayer, TripPreviewer.
+- **Shaders:** palette wave, voxel edge bevel, glass, tilt-shift, curved horizon. AI drafts them and you art-direct.
+- **Segment candidates** as `.tscn` text from specs, **validated by the bot**, **curated by you**.
+- **Tests:** headless deterministic tests for jump heights, chain rules, frame zones, Wonder math, and trip reachability.
+- **Telemetry scripts** for playtests (where Wonder drops, where players bonk).
 
-### Practices that make AI effective here
+### Practices
 
-1. **Keep this design doc and a `TUNING.md` in the repo.** All magic numbers go in Resources (`HeroTuning.tres`), never hard-coded, so AI changes are data diffs.
-2. **One system per prompt.** Ask for focused changes with tests, not "build the game."
-3. **Deterministic sim + input-log replays**, so AI-made changes can be regression-tested automatically against recorded runs.
-4. **Feel is human-only.** AI can implement a coyote-time parameter. *You* decide it's 0.10 s by playing.
-5. **Commit small, review everything.** AI-written physics code especially needs a human read-through.
+1. Keep this doc and a `TUNING.md` in the repo. All numbers go in resources, never hard-coded.
+2. One system per prompt, with tests.
+3. Deterministic sim plus input-log replays for automated regression.
+4. **Feel is human-only.**
+5. Small commits, everything reviewed.
 
 ### What AI should NOT do
 
-Final character animation, final music, final hero/kid/interior art, the opening sequence's timing, or any feel tuning.
+Final animation, final music, final hero/kid/interior art, opening sequence timing, or feel tuning.
 
 ## 25. Major Technical Risks
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| **Hero feel at speed** (tunneling, landing jank on moving vehicles) | Core | Custom kinematic controller, swept collision, fixed timestep, moving-platform velocity inheritance tested in isolation in Phase 0. |
-| **Frame position math in a moving reference frame** | Core | Compute u from camera-projected hero X every frame (truth = what the player sees), not from accumulated deltas. |
-| **Debris spikes** (domino chains → 1,000 chunks) | Frame drops | ChunkSim budget with oldest-first pop-out. Fewer pieces at distance. Profile the worst-case domino segment. |
-| **Floating-point drift** on long drives | Jitter | Floating origin, plus tests that run Long Drive for 2 hours headless. |
-| **Interior/exterior lighting mismatch** (one scene, two "worlds") | Visual | Light layers/masks from day one. Separate post stack via compositor if needed. |
-| **Glass readability** (reflections and rain obscuring gameplay) | Readability | Glass effects are strictly masked away from the Run Line band. Intensity caps. |
-| **Motion sickness** (camera bumps, head bob, parallax) | Accessibility | Steady Cam option, conservative defaults, never roll more than 2°, playtest with sensitive players. |
-| **Switch-class performance** | Port | Mobile renderer from early on in a test build. Kit + palette approach is inherently cheap. |
-| **Godot console porting dependency** | Business | Engage a porting partner during the vertical slice. Unity fallback is documented. |
-| **Stepped (on-twos) hero animation hurting game feel** | Feel | Prototype both. Gameplay hitboxes and timings stay continuous, and only the *visual* pose is stepped. |
+| Risk | Mitigation |
+|---|---|
+| **Hero feel at speed** (tunneling, landing on moving vehicles) | Custom kinematic controller, swept collision, fixed timestep, prototyped first. |
+| **Cube spray cost on low-end hardware** | GPU particles with heightfield collision, per-platform budgets, oldest-first pop-out, worst-case domino stress test. |
+| **Voxel look reading as generic/Minecraft** | Edge-bevel shader, no terrain grid, curated palettes, tilt-shift, interior contrast. Run screenshot tests early. |
+| **VoxPipeline complexity** | Keep it simple: layers → clusters, marker voxels → sockets. Build it during MVP. |
+| **Floating-point drift** | Floating origin, plus a 2-hour headless Long Drive test. |
+| **Interior/exterior lighting mismatch** | Separate light layers from day one. |
+| **Glass hurting readability** | Effects masked away from the gameplay band. |
+| **Motion sickness** | Steady Cam, conservative defaults, roll ≤ 2°. |
+| **Console porting with Godot** | Engage a partner early. Unity fallback documented. |
 
 ## 26. Major Design Risks
 
 | Risk | Mitigation |
 |---|---|
-| **The nostalgia wears off and it's "just a runner."** | Chain/variety/domino depth, route mastery, set pieces every trip, Wonder-gated routes, short trips (no slog), and Long Drive for score chasers. Test the MVP **without** the window frame (§16, criterion 3). |
-| **Auto-run feels passive.** | Three verbs with dense decisions, earned frame position, Out-Front risk/reward, and multiple vertical routes. Every 2–3 seconds there must be a decision. |
-| **The window frame shrinks the playable area too much.** | Large minivan window, Window Zoom option, the head rig's lean for extra view, and a cap on interior frame thickness at the sides. |
-| **Lead time too short at highway speed.** | Parallax distance, look-ahead yaw, audio and visual telegraphs (headlight glare on the pillar, honks), and segment validation by speed band. |
-| **Readability of breakable vs hazard vs platform.** | Five readability rules (§7), material language, consistent color coding, and teaching by layout in Trips 1–3. |
-| **Tone: violence toward the real world** (slashing cars with families). | Vehicles are never destroyed, only toy-bounced. Enemies are explicitly imaginary. Slashing targets are objects. Cows bounce, they don't break. |
-| **Sentimentality** (the ending feeling manipulative). | Keep it wordless and short. No "goodbye" for the hero. The epilogue is a gift, not a tearjerker. Test it with the target audience and cut anything that explains itself. |
-| **Too many systems for a 3-button game.** | Every addition must feed the chain or the frame position. If it doesn't, it's cut. |
-| **"Kid gets bored" fail is too punishing.** | Landmark checkpoints, short trips, generous return at u = 0.30, Sunday Driver and No-Lose assists. |
+| **The nostalgia wears off and it's "just a runner."** | Chains, variety rule, domino, set pieces in every trip, Wonder-gated routes, short trips, Long Drive. |
+| **Auto-run feels passive.** | Dense decisions every 2–3 s, high and low routes, LEADING bonus. |
+| **Too easy means boring for experts.** | Generous to *finish*, demanding to *3-star*. Leaderboards and Long Drive for depth. |
+| **Window frame shrinks the playable area.** | Large minivan window, Window Zoom, lean-to-look. |
+| **Fast objects feel unfair.** | Heads-Up on everything fast, 1.2 s minimum visibility validated automatically. |
+| **Readability (breakable vs hazard).** | Five readability rules, consistent palette coding, teaching through layout. |
+| **Tone: violence toward real people.** | Vehicles never break, enemies are imaginary, cows bounce. |
+| **Cube spray visual noise hiding hazards.** | Spray cubes are cosmetic, fall *away* from the hero's path, and shrink fast. Hazards keep a strong outline. |
 
 ## 27. What Should NOT Be Built
 
-- **A driving game.** The player never steers the car.
-- **An open world**, or free-roam on foot.
-- **A 3-lane runner.** One plane, period.
-- **Destroying vehicles** with people in them, or any injury, including to cows.
-- **XP, levels, stats, skill trees, crafting, currency shops.**
-- **Runtime procedural fracture** (Voronoi, CSG). Everything is pre-split kit pieces.
-- **Full rigid-body simulation for all debris.** ChunkSim covers it.
-- **Wall-run, climb, grappling hook, guns, magic spells, a second imaginary power.**
-- **Horizontal speed control.**
-- **Dialogue trees, voiced story, cutscenes longer than 30 seconds.**
-- **Online multiplayer.** Local co-op only.
-- **F2P monetization, energy systems, ads, loot boxes, battle passes.**
-- **A level editor** (not before 1.0. Maybe never).
-- **Multiple car models as a progression system.** The family has one car. That's the point.
-- **Real licensed music or car brands.**
-- **Free camera, a third-person mode, or a "see the hero from outside the car" mode.** (Exception: the photo mode is still *inside* the car.)
+- A driving game. The player never steers.
+- An open world, or free-roam on foot.
+- A 3-lane runner. One plane only.
+- **Kid Logic / real-world cause-and-effect gimmicks.** The hero doesn't change traffic lights or make trucks honk.
+- **A narrative arc** told through the interior. The interior is set-dressing.
+- Destroying vehicles, or harming people or animals.
+- XP, stats, skill trees, crafting, currencies.
+- **A voxel terrain grid or diggable/editable world.** Voxels are for objects.
+- Runtime voxel fracture simulation (Teardown-style). Breaks use authored clusters plus particles.
+- Full rigid bodies for all debris.
+- Wall-run, climb, grappling, guns, spells, a second power.
+- Horizontal speed control.
+- Dialogue, voiced story, long cutscenes.
+- Online multiplayer (local co-op only).
+- F2P monetization, energy systems, ads, loot boxes.
+- A level editor (before 1.0).
+- Licensed music or car brands.
+- A camera outside the car.
 
 ## 28. Development Roadmap
 
-**Assumption:** one developer + AI tools, with contracted animator, composer, and (later) a porting partner. Total ≈ 20–24 months to 1.0.
+**Assumption:** one developer + AI tools, with a contracted animator, composer, and porting partner. ≈ 18–22 months to 1.0.
 
 ### Phase 0 — Feel Prototype (2 weeks)
-- A greybox plane, the hero controller, jump/slash/air jump/slash-hop, a scrolling world, wires.
-- Frame position and lost logic.
-- **Gate:** is jumping and slashing fun *with no art and no frame*? If not, iterate up to 2 more weeks. If it's still not fun, rethink the verb set before going further.
+- Greybox plane, hero controller, jump/slash/air jump/slash-hop, scrolling world, wires, frame zones.
+- A quick cube-spray test on a voxel pole.
+- **Gate:** is it fun with no art and no frame? If not, iterate up to 2 more weeks before moving on.
 
 ### Phase 1 — MVP (6–8 weeks)
-- Everything in §16. Interior greybox-plus, Kid Head Rig, glass, opening (simple), ChunkSim, topples, domino, one trip, 2 Wonder tiers, basic audio.
-- **Gate:** the §16 success criteria (clip test, replay test, readability, 60 fps).
+- Everything in §16: VoxPipeline v1, interior, Kid Head Rig, glass, opening, ChunkSim, GPU cube spray, topple/domino, one trip, Wonder 0/2, Heads-Up, arrival.
+- **Gate:** the §16 success criteria.
 
 ### Phase 2 — Vertical Slice (≈ 4 months)
-- Months 1–2: final art direction locked (kit library, palette system, hero/kid/interior final), Wonder 0–3, full move set.
-- Month 3: Trips 2–3, Train and Semi-Dragon set pieces, Kid Logic, music stems.
-- Month 4: polish, accessibility, juice pass, performance on Deck.
-- **Gate:** trailer from real gameplay. Steam page live. Publisher pitches (optional).
+- Months 1–2: lock the art direction (voxel library, palettes, edge shader, hero, kid, interior), Wonder 0–3, full move set.
+- Month 3: Country Road and Interstate, Train and Semi-Dragon set pieces, music stems.
+- Month 4: polish, accessibility, juice, Deck performance.
+- **Gate:** trailer from real gameplay, Steam page live.
 
 ### Phase 3 — Demo & Market Test (≈ 2 months, overlapping)
-- Next Fest demo (the vertical slice), Long Drive prototype, replay-clip sharing.
-- Collect telemetry: where players get lost, chain lengths, session length.
-- **Gate:** wishlists and demo metrics justify full production scope. If they're weak, ship a smaller 6-trip version.
+- Next Fest demo, Long Drive prototype, clip sharing, telemetry.
+- **Gate:** wishlists and demo metrics justify full scope. Otherwise ship a smaller 6-trip version.
 
-### Phase 4 — Production (≈ 9–10 months)
-- Trips 4–12 at about 3–4 weeks each (segments, set piece, interior dressing, music arrangement).
-- Collections, cosmetics, paper map, plate game, objectives.
-- Backseat co-op (decide at the month-5 checkpoint: 1.0 or post-launch).
-- The Dream and the Epilogue (budget extra time; these carry the emotional payoff).
-- Port test builds every month on Switch-class settings.
+### Phase 4 — Production (≈ 8–9 months)
+- Trips 4–12 at ≈ 3 weeks each (segments, set piece, palette, music arrangement).
+- Cosmetics, paper map, objectives, co-op decision at month 4.
+- The Big Trip and its beach arrival get extra polish time.
+- Monthly Switch-class test builds.
 
 ### Phase 5 — Polish & Launch (≈ 3 months)
-- Content lock → balancing via telemetry and BotPlayer → localization (UI + few barks) → certification prep with the porting partner.
+- Content lock, balancing via telemetry and the bot, localization, certification prep.
 - Launch on Steam (PC/Deck). Console port 1–3 months after.
 
 ### Post-launch
-- Free update: co-op (if deferred), new Long Drive biomes, community daily routes.
-- Possible paid DLC: *"Summer Camp"* (a new trip pack with a bus instead of the car).
+- Free update: co-op (if deferred), new Long Drive biomes, daily routes.
+- Possible DLC trip pack.
 
 ---
 
@@ -1005,39 +895,40 @@ Final character animation, final music, final hero/kid/interior art, the opening
 - **You are** the imaginary runner beside the family car, seen only through the backseat window.
 - **You press** Jump, Slash, Down.
 - **You chain** slashes, hops, grinds, rides, bounces, and domino falls, and the same move twice doesn't count.
-- **You stay** in the window: play well and you lead the car, play badly and you slip behind the pillar.
-- **You transform** the world: chains fill Wonder, and Wonder turns reality into fantasy, the radio into an orchestra, trucks into dragons.
-- **You fail** when the kid gets bored.
-- **You progress** through a year of car rides, told by what's inside the car.
-- **You finish** as the parent, watching your kid watch their own hero.
+- **You keep pace**: lead the car for bonus points, and if you fall behind he catches back up.
+- **You transform** the world: chains fill Wonder, and Wonder turns reality into fantasy and the radio into a soundtrack.
+- **You smash** chunky voxel objects into sprays of tumbling cubes.
+- **You fail** only if Wonder runs out and the kid gets bored.
+- **You arrive.** Every trip ends at its destination, and the last one ends at the beach.
 
 ## Appendix B — Starting Tuning Table
 
 | Parameter | Value |
 |---|---|
 | Hero height (H) | 1.6 m |
-| Visible window width at Run Line | 16 H |
-| Scroll speeds (residential / town / highway / dream) | 6 / 8 / 11 / 14 H/s |
-| Home frame position u | 0.40 |
-| Front cap u | 0.78 |
-| Out-Front threshold u | 0.60 (×1.5 score) |
-| Lost threshold u | 0.02 |
-| Return position u | 0.30 |
-| Bonk / pit penalty | −0.15 / −0.20 u |
-| Drift to home | 0.03 u/s |
+| Voxel size | 1/12 H (≈ 13 cm) |
+| Hero height in voxels | ≈ 12 |
+| Visible window width at gameplay plane | 16 H |
+| Scroll speeds (residential / town / highway) | 6 / 8 / 11 H/s |
+| Minimum obstacle visibility | 1.2 s |
+| Heads-Up lead time | 1.5 s |
+| Zones: Falling Behind / Pacing / Leading | rear 20% / middle / front 35% |
+| Leading bonus | × 1.5 score |
+| Falling Behind Wonder drain | ≈ 4% per second |
+| Return-to-middle time | ≈ 3 s |
 | Jump (full / min) | 3.0 H / 1.2 H, apex 0.38 s |
 | Fall gravity multiplier | 1.6 |
 | Air jump | 2.0 H, 1 charge, refreshed by any interaction |
-| Coyote / buffer | 0.10 s / 0.12 s |
-| Slash | 0.22 s, active f3–f7, reach 1.5 H |
-| Slash-hop | +1.4 H, +0.03 u |
-| Air whiff float | 0.15 s, once per airtime |
-| Stomp | ×3 fall; bounce 3.5 H |
-| Slide | 0.5 s, 0.45 H tall; slide-jump 2.2 H |
-| Grind attach window | 0.35 H; +0.06 u/s |
-| Chain timer | 1.5 s |
-| Multiplier | 1 + ⌊chain/4⌋, max ×8 |
-| Hitstop | 3–5 frames by mass |
+| Coyote / buffer | 0.12 s / 0.15 s |
+| Slash | 0.22 s, reach 1.5 H |
+| Slash-hop | +1.4 H |
+| Stomp bounce | 3.5 H |
+| Slide | 0.5 s, 0.45 H tall |
+| Grind attach window | 0.4 H |
+| Chain timer | 2.0 s |
+| Multiplier | 1 + ⌊chain/4⌋, max × 8 |
+| Hitstop | 3–5 frames |
 | Giant | 4× scale, 8 s |
-| ChunkSim budget | 600 chunks, 2–4 s linger, shrink-pop |
-| Jolt body budget | 30 |
+| Cube spray (pop / topple / set piece) | 40–80 / 100–200 / 500+ |
+| Live cube budget (Deck / Switch-class) | ≈ 4,000 / ≈ 1,500 |
+| ChunkSim / Jolt budgets | 300 / 30 |
